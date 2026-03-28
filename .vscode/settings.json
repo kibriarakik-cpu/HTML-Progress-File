@@ -1,0 +1,9 @@
+{
+    "workbench.editor.autoLockGroups": {
+        "workbench.editor.chatDebug": true,
+        "workbench.editor.chatSession": true,
+        "copilot-chat-replay": true,
+        "workbench.editors.gettingStartedInput": true,
+        "imagePreview.previewEditor": true
+    }
+}

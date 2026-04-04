@@ -6,7 +6,13 @@
     <title>Document</title>
 </head>
 <body>
+        <style>
+    body {
+      background-color: aqua;
+    }
+  </style>
     <style>
+    
     #foot
     {
         border: 2px solid red;
@@ -47,11 +53,55 @@
     #paragraph {
         border: dashed 2px seagreen;
     }
+    @keyframes box {
+        0% {
+            top: 0px;
+             left: 0px;
+             right: 10px;
+        }
+        25% {
+            top: 50px;
+             left: 10px;
+                right: 10px;
+        }
+        50% {
+               top: 300px;
+             left: 10px;
+                right: 10px;         
+
+        }
+        75% {
+            top: 30px;
+             left: 100px;
+                right: 10px;
+            
+            
+        }
+        100% {
+            top: 200px;
+             left: 00px;
+                right: 10px;
+        }
+        from {
+            background-color: lightcoral;
+        }
+        to {
+            background-color: lightblue;
+        }
+        
+    }
+    #master {
+        height: 150px;width: 50px;
+        background-color: lightcoral;
+        position: relative;
+        animation-name: box;
+        animation-duration: 4s;
+        animation-iteration-count: infinite;
+        animation-duration: 4s;
+        animation-iteration-count: infinite;
+    }
 
     </style>
-    
-
-
     <div id="foot"><h1>I am Rakik Kibria</h1></div>
     <div id="Dew">I like football</div>
     <div id="Rose">I am confident</div>
@@ -63,6 +113,9 @@
         This is a simple paragraph.This is used to show the border property in CSS. The border property is used to set the border of an element. It can be used to set the width, style, and color of the border. In this example, we have set the border to be dashed, with a width of 2px and a color of seagreen.
 
     </p>
+      <div id="master">
+
+    </div>
 
     
 </body>

@@ -20,6 +20,7 @@
        border: 10px solid green;
        right: 10px;
        bottom : 10px;
+       animation: box 5s infinite;
     }
     #div2 {
        width: 50px;
@@ -52,6 +53,57 @@
         border: 10px solid orange;
         position: sticky;
         left : 20px;
+    }
+    @-o-keyframes box {
+        0% {
+            top: 0px;
+             left: 0px;
+             right: 10px;
+        }
+        50% {
+            top: 200px;
+             left: 200px;
+             right: 10px;
+        }
+        100% {
+            top: 0px;
+             left: 0px;
+             right: 10px;
+        }
+    }
+     @-webkit-keyframes box {
+        0% {
+            top: 0px;
+             left: 0px;
+             right: 10px;
+        }
+        50% {
+            top: 200px;
+             left: 200px;
+             right: 10px;
+        }
+        100% {
+            top: 0px;
+             left: 0px;
+             right: 10px;
+        }
+    }
+     @keyframes box {
+        0% {
+            top: 0px;
+             left: 0px;
+             right: 10px;
+        }
+        50% {
+            top: 200px;
+             left: 200px;
+             right: 10px;
+        }
+        100% {
+            top: 0px;
+             left: 0px;
+             right: 10px;
+        }
     }
 
 

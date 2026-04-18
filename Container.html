@@ -10,7 +10,19 @@
 </head>
 
 <body>
-    <div class="container bg-success text-white p-5">
+    <style>
+        body {
+            background-color: lightblue;
+        }
+#myDialog {
+  background-color: green;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 20px;
+}
+</style>
+    <div class="container bg-light text-dark p-5">
         <h1>Container Documentation</h1>
         <p>This is a simple example of a Bootstrap container.</p>
         <button class="btn btn-primary">Test Button</button>
@@ -27,5 +39,24 @@
         <h2>Another Container</h2>
         <p>This container has padding and a background color.</p>
     </div>
+   <dialog id="myDialog">
+  <p>This is a dialog box</p>
+  <button onclick="document.getElementById('myDialog').close()">Close</button>
+</dialog>
+
+<button onclick="document.getElementById('myDialog').showModal()">
+  Open Dialog
+</button>
+<p dir="rtl">This text goes from right to left</p>
+<ruby><h1>日本</h1>
+   <rt><h3>Japan</h3></rt>
+</ruby><br>
+<ruby><h1>学生</h1>
+  学生 
+  <rp>(</rp>
+  <rt><h3>Student</h3></rt>
+  <rp>)</rp>
+</ruby>
+
 </body>
 </html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+</head>
+<body>
+    <style>
+        body {
+            background-color: lightblue;
+        }
+    </style>
+    <h1 style="background-color: lightblue; color: green; font-family: Arial, sans-serif;">Simple Calculator</h1>
+    <p style="background-color:lightblue; color: white;">Perform all Operations using JavaScript</p>
+    <p id="add"></p>
+    <p id="sub"></p>
+    <p id="mul"></p>
+    <p id="div"></p>
+    
+    <div class="pagination">
+        <div style="display: flex; justify-content: space-around;">
+            <a  class="mx-5" href="https://www.google.com/" >Home</a>
+            <a class="mx-5" href="https://www.espn.in/" >Sports</a>
+            <a  class="mx-5" href="https://phet.colorado.edu/" >Science</a>
+            <a  class="mx-5" href="https://www.amazon.com/" >Mart</a>
+            <a  class="mx-5" href="https://mail.google.com/" >Email</a>
+            <a class="mx-5" href="https://www.nytimes.com/" >News </a>
+            <a  class="mx-5" href="https://www.google.com/contact/">Contact</a>
+        </div>
+       
+    </div>
+</body>
+<script>
+    let num1 = 10;
+    let num2 = 5;
+    let num3 = 15;
+    let num4 = 20;
+
+    document.getElementById("add").innerHTML = `Addition: ${num1} + ${num2} = ${num1 + num2}`;
+    document.getElementById("add").innerHTML += `<br>Addition: ${num3} + ${num4} = ${num3 + num4}`;
+    document.getElementById("sub").innerHTML = `Subtraction: ${num1} - ${num2} = ${num1 - num2}`;
+    document.getElementById("sub").innerHTML += `<br>Subtraction: ${num3} - ${num4} = ${num3 - num4}`;        
+    document.getElementById("mul").innerHTML = `Multiplication: ${num1} * ${num2} = ${num1 * num2}`;
+    document.getElementById("mul").innerHTML += `<br>Multiplication: ${num3} * ${num4} = ${num3 * num4}`;
+    document.getElementById("div").innerHTML = `Division: ${num1} / ${num2} = ${num1 / num2}`;
+    document.getElementById("div").innerHTML += `<br>Division: ${num3} / ${num4} = ${num3 / num4}`;
+</script>
+</html>

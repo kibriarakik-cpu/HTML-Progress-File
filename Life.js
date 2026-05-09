@@ -1,13 +1,27 @@
-const name = "Life";
-const constant = "Welcome to MySite";
-const add = 5 + 10;
-const sub = 10 - 5;
-const mul = 5 * 10;
-const div = 10 / 5;
-console.log(add);
-console.log(sub);
-console.log(mul);
-console.log(div);
+
+function addition(num1, num2) {
+    return num1 + num2;
+}
+console.log(addition(5, 10));
+
+function subtraction(num1, num2) {
+    return num1 - num2;
+}
+console.log(subtraction(10, 5));
+
+function multiplication(num1, num2) {
+    return num1 * num2;
+}   
+console.log(multiplication(5, 10));
+function division(num1, num2) {
+    return num1 / num2;
+}   
+console.log(division(10, 5));
+function modulus(num1, num2) {
+    return num1 % num2;
+}
+var result = modulus(10, 3);
+console.log(result);
 
 
 

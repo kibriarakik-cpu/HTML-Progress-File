@@ -1,27 +1,11 @@
-
-function addition(num1, num2) {
-    return num1 + num2;
-}
-console.log(addition(5, 10));
-
-function subtraction(num1, num2) {
-    return num1 - num2;
-}
-console.log(subtraction(10, 5));
-
-function multiplication(num1, num2) {
-    return num1 * num2;
-}   
-console.log(multiplication(5, 10));
-function division(num1, num2) {
-    return num1 / num2;
-}   
-console.log(division(10, 5));
-function modulus(num1, num2) {
-    return num1 % num2;
-}
-var result = modulus(10, 3);
-console.log(result);
+var num1=10;
+var num2=20;
+var sum=num1+num2;
+console.log(sum);   
+var num3=30;
+var num4=40;
+var sub2=num3-num4;
+console.log(sub2);
 
 
 

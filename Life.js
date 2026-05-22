@@ -27,3 +27,6 @@ console.log("Current hours: " + hours);
 console.log("Current minutes: " + minutes);
 console.log("Current seconds: " + seconds);
 console.log("Current time: " + time);
+let name = "John Doe";
+let age = 30;
+let city = "New York";

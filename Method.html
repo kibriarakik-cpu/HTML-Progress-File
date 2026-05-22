@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Webpage</title>
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <style>
+        body {
+            background-color: darkturquoise;
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+    </style>
+   <script>
+    function greet(name) {
+        return `Hello, ${name}! Welcome to my webpage.`;
+    }
+
+    function add(a, b) {
+        return a + b;
+    }
+
+    function multiply(a, b) {
+        return a * b;
+    }
+
+    console.log(greet("Alice"));
+    console.log("Addition of 5 and 3: " + add(5, 3));
+    console.log("Multiplication of 5 and 3: " + multiply(5, 3));    
+    const name = "John Doe";
+const age = 30;
+const city = "New York";
+console.log(name.toUpperCase());
+console.log(age.toString().trim(5));
+console.log(city.endsWith("Angeles"));
+const message = `My name is ${name}, I am ${age} years old, and I live in ${city}.`;
+console.log(message);
+let country = "United States";
+console.log(country.includes("States"));
+let greeting = "Hello, " + name + "!";
+console.log(greeting);
+const name2="Rakik Kibria";
+const age2=25;
+const city2="Dhaka";
+const message2 = `My name is ${name2}, I am ${age2} years old, and I live in ${city2}.`;
+console.log(message2);
+   </script> 
+</body>
+</html>

@@ -1,17 +1,4 @@
-const name = "John Doe";
+const name = "John Doe"; 
 const age = 30;
-const city = "New York";
-console.log(name.toUpperCase());
-console.log(age.toString().trim(5));
-console.log(city.endsWith("Angeles"));
-const message = `My name is ${name}, I am ${age} years old, and I live in ${city}.`;
-console.log(message);
-let country = "United States";
-console.log(country.includes("States"));
-let greeting = "Hello, " + name + "!";
-console.log(greeting);
-const name2="Rakik Kibria";
-const age2=25;
-const city2="Dhaka";
-const message2 = `My name is ${name2}, I am ${age2} years old, and I live in ${city2}.`;
-console.log(message2);
+
+console.log(`My name is ${name} and I am ${age} years old.`);

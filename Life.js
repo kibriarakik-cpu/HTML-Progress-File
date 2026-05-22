@@ -1,32 +1,7 @@
-var num1=10;
-var num2=20;
-function sum(num1, num2) {
-    return num1 + num2;
+//array
+let fruits = ["apple", "banana", "orange"];
+console.log(fruits[0]); 
+let a =["Argentina","Brazil","France","Portugal","Spain"];
+for(let i=0; i<a.length; i++){
+    console.log(a[i]);
 }
-
-var num3=30;
-var num4=40;
-function sub(num3, num4) {
-    return num3 - num4;
-}
-var num5=50;
-var num6=60;
-function mul(num5, num6) {
-    return num5 * num6;
-}
-var date = new Date();
-var hours = date.getHours();
-var minutes = date.getMinutes();
-var seconds = date.getSeconds();
-var time = hours + ":" + minutes + ":" + seconds;
-console.log("The sum of num1 and num2 is: " + sum(num1, num2));
-console.log("The difference of num3 and num4 is: " + sub(num3, num4));
-console.log("The product of num5 and num6 is: " + mul(num5, num6)); 
-console.log("Current date and time: " + date);
-console.log("Current hours: " + hours);
-console.log("Current minutes: " + minutes);
-console.log("Current seconds: " + seconds);
-console.log("Current time: " + time);
-let name = "John Doe";
-let age = 30;
-let city = "New York";

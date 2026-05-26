@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Planet Earth — Complete Study Notes</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Source+Sans+3:wght@300;400;500;600&display=swap');
+
+  :root {
+    --bg: #faf9f6;
+    --surface: #ffffff;
+    --surface2: #f2f0ec;
+    --border: #e0dcd4;
+    --text: #1a1916;
+    --text-muted: #6b6760;
+    --text-light: #9b9894;
+    --accent: #1d5c4a;
+    --accent-light: #e6f2ee;
+    --accent-mid: #2d7a60;
+    --highlight: #8b4513;
+    --highlight-light: #fdf2ea;
+    --info: #1a3d6b;
+    --info-light: #e8f0fa;
+    --warning: #6b4d00;
+    --warning-light: #fff8e6;
+    --evidence: #4a1d6b;
+    --evidence-light: #f3eefa;
+    --diagram: #0f4a5e;
+    --diagram-light: #e6f4f8;
+    --sidebar-w: 240px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Source Sans 3', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 16px;
+    line-height: 1.75;
+  }
+
+  /* ── LAYOUT ── */
+  .layout { display: flex; min-height: 100vh; }
+
+  /* ── SIDEBAR ── */
+  nav {
+    width: var(--sidebar-w);
+    flex-shrink: 0;
+    background: var(--text);
+    color: #e8e6e0;
+    padding: 2rem 0;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+    font-size: 13px;
+  }
+  nav .nav-title {
+    font-family: 'Lora', serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: #ffffff;
+    padding: 0 1.25rem 1rem;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    margin-bottom: 0.75rem;
+    letter-spacing: 0.02em;
+  }
+  nav a {
+    display: block;
+    padding: 0.35rem 1.25rem;
+    color: #b0aca4;
+    text-decoration: none;
+    transition: color 0.15s, background 0.15s;
+    border-left: 2px solid transparent;
+    line-height: 1.4;
+  }
+  nav a:hover { color: #ffffff; background: rgba(255,255,255,0.06); }
+  nav .nav-section { font-weight: 600; color: #d4d0c8; margin-top: 1rem; border-left: 2px solid #4ade80; padding-left: 1.125rem; }
+  nav .nav-sub { padding-left: 2rem; font-size: 12px; color: #8a8680; }
+
+  /* ── MAIN CONTENT ── */
+  main {
+    flex: 1;
+    max-width: 820px;
+    padding: 3rem 2.5rem;
+    min-width: 0;
+  }
+
+  /* ── PAGE HEADER ── */
+  .page-header {
+    border-bottom: 2px solid var(--border);
+    padding-bottom: 2rem;
+    margin-bottom: 3rem;
+  }
+  .page-header .course-tag {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent-mid);
+    margin-bottom: 0.5rem;
+  }
+  .page-header h1 {
+    font-family: 'Lora', serif;
+    font-size: 2.4rem;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.25;
+    margin-bottom: 0.75rem;
+  }
+  .page-header .subtitle {
+    color: var(--text-muted);
+    font-size: 15px;
+    font-style: italic;
+  }
+
+  /* ── SECTIONS ── */
+  .module {
+    margin-bottom: 4rem;
+    scroll-margin-top: 2rem;
+  }
+  .module-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent-mid);
+    margin-bottom: 0.4rem;
+  }
+  h2 {
+    font-family: 'Lora', serif;
+    font-size: 1.65rem;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.3;
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1.5px solid var(--border);
+  }
+  h3 {
+    font-family: 'Lora', serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--text);
+    margin: 1.75rem 0 0.6rem;
+  }
+  h4 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin: 1.25rem 0 0.4rem;
+  }
+  p { margin-bottom: 1rem; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── CALLOUT BOXES ── */
+  .callout {
+    border-radius: 6px;
+    padding: 1rem 1.25rem;
+    margin: 1.25rem 0;
+    border-left: 3px solid;
+  }
+  .callout p { margin-bottom: 0.5rem; }
+  .callout p:last-child { margin-bottom: 0; }
+  .callout-title {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 0.4rem;
+  }
+
+  .callout-concept {
+    background: var(--info-light);
+    border-color: #378add;
+    color: var(--info);
+  }
+  .callout-concept .callout-title { color: #185fa5; }
+
+  .callout-evidence {
+    background: var(--evidence-light);
+    border-color: #9d5cd4;
+    color: var(--evidence);
+  }
+  .callout-evidence .callout-title { color: #6b2fa0; }
+
+  .callout-diagram {
+    background: var(--diagram-light);
+    border-color: #1d9e75;
+    color: var(--diagram);
+  }
+  .callout-diagram .callout-title { color: #0f6e56; }
+
+  .callout-exam {
+    background: var(--highlight-light);
+    border-color: #d85a30;
+    color: var(--highlight);
+  }
+  .callout-exam .callout-title { color: #993c1d; }
+
+  .callout-warning {
+    background: var(--warning-light);
+    border-color: #ef9f27;
+    color: var(--warning);
+  }
+  .callout-warning .callout-title { color: #854f0b; }
+
+  /* ── DATA TABLE ── */
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    margin: 1.25rem 0;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .data-table th {
+    background: var(--surface2);
+    font-weight: 600;
+    padding: 0.6rem 0.8rem;
+    text-align: left;
+    border-bottom: 1.5px solid var(--border);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+  }
+  .data-table td {
+    padding: 0.55rem 0.8rem;
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+  }
+  .data-table tr:last-child td { border-bottom: none; }
+  .data-table tr:nth-child(even) td { background: #faf9f6; }
+  .data-table .highlight-cell { color: #a32d2d; font-weight: 600; }
+  .data-table .good-cell { color: #0f6e56; font-weight: 600; }
+
+  /* ── PLANET TILT TABLE ── */
+  .planet-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+    gap: 10px;
+    margin: 1.25rem 0;
+  }
+  .planet-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.75rem 0.5rem;
+    text-align: center;
+    font-size: 13px;
+  }
+  .planet-card .planet-name { font-weight: 600; font-size: 12px; color: var(--text); }
+  .planet-card .planet-tilt { font-size: 18px; font-weight: 300; font-family: 'Lora', serif; color: var(--accent-mid); }
+  .planet-card.extreme { border-color: #d85a30; background: var(--highlight-light); }
+  .planet-card.extreme .planet-tilt { color: #993c1d; }
+
+  /* ── PHASE CHANGE ARROW ── */
+  .phase-chain {
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+    margin: 1.25rem 0;
+    overflow-x: auto;
+  }
+  .phase-node {
+    flex: 1;
+    min-width: 100px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 0.75rem 0.5rem;
+    text-align: center;
+    font-size: 13px;
+    position: relative;
+  }
+  .phase-node:not(:first-child) { border-left: none; }
+  .phase-node .mineral { font-weight: 600; font-size: 12px; }
+  .phase-node .formula { font-size: 11px; color: var(--text-muted); font-style: italic; }
+  .phase-node .density { font-size: 18px; font-weight: 300; font-family: 'Lora', serif; color: var(--accent-mid); }
+  .phase-node .depth { font-size: 11px; color: var(--highlight); font-weight: 600; }
+  .phase-node:first-child { border-radius: 6px 0 0 6px; }
+  .phase-node:last-child { border-radius: 0 6px 6px 0; }
+
+  /* ── LAYER BLOCK ── */
+  .layers-visual {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 1.25rem 0;
+    font-size: 13.5px;
+  }
+  .layer-row {
+    display: flex;
+    align-items: center;
+    padding: 0.65rem 1rem;
+    border-bottom: 1px solid var(--border);
+    gap: 1rem;
+  }
+  .layer-row:last-child { border-bottom: none; }
+  .layer-swatch { width: 14px; height: 14px; border-radius: 3px; flex-shrink: 0; }
+  .layer-name { font-weight: 600; width: 140px; flex-shrink: 0; }
+  .layer-comp { color: var(--text-muted); flex: 1; }
+  .layer-depth { font-size: 11px; color: var(--text-light); text-align: right; white-space: nowrap; }
+
+  /* ── STEP SEQUENCE ── */
+  .step-list { margin: 1rem 0; }
+  .step-item {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    align-items: flex-start;
+  }
+  .step-num {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: white;
+    font-size: 13px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .step-content { flex: 1; }
+  .step-content strong { font-weight: 600; }
+
+  /* ── COMPARISON GRID ── */
+  .compare-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin: 1.25rem 0;
+  }
+  .compare-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem;
+  }
+  .compare-card h4 { margin-top: 0; }
+  .compare-card ul { padding-left: 1.1rem; font-size: 14px; color: var(--text-muted); }
+  .compare-card ul li { margin-bottom: 0.3rem; }
+
+  /* ── DIVIDER ── */
+  .section-divider {
+    border: none;
+    border-top: 1.5px solid var(--border);
+    margin: 2.5rem 0;
+  }
+
+  /* ── INLINE TERM ── */
+  .term { font-style: italic; font-weight: 600; color: var(--accent-mid); }
+  .key { background: var(--accent-light); padding: 1px 5px; border-radius: 3px; font-weight: 600; font-size: 0.95em; color: var(--accent); }
+
+  /* ── PRINT ── */
+  @media print {
+    nav { display: none; }
+    .layout { display: block; }
+    main { max-width: 100%; padding: 1rem; }
+  }
+</style>
+</head>
+<body>
+<div class="layout">
+
+<!-- ══ SIDEBAR ══ -->
+<nav>
+  <div class="nav-title">NEO Camp 26: Planet Earth — Study Notes</div>
+  <a href="#m1" class="nav-section">1. Big Bang</a>
+  <a href="#m1-evidence" class="nav-sub">Evidence</a>
+  <a href="#m2" class="nav-section">2. Building Planets</a>
+  <a href="#m2-accretion" class="nav-sub">Accretion & Frost Line</a>
+  <a href="#m2-late" class="nav-sub">Late Accretion</a>
+  <a href="#m2-impacts" class="nav-sub">Impacts & Tilts</a>
+  <a href="#m3" class="nav-section">3. Earth's Interior</a>
+  <a href="#m3-diff" class="nav-sub">Differentiation</a>
+  <a href="#m3-layers" class="nav-sub">The Layers</a>
+  <a href="#m4" class="nav-section">4. Seismology</a>
+  <a href="#m4-waves" class="nav-sub">Seismic Waves</a>
+  <a href="#m4-shadow" class="nav-sub">Shadow Zones</a>
+  <a href="#m4-phase" class="nav-sub">Phase Changes</a>
+  <a href="#m5" class="nav-section">5. Composition</a>
+  <a href="#m5-mantle" class="nav-sub">Mantle Evidence</a>
+  <a href="#m5-core" class="nav-sub">Core Evidence</a>
+  <a href="#m5-formation" class="nav-sub">Core Formation</a>
+  <a href="#m5-crust" class="nav-sub">Crust Formation</a>
+  <a href="#m5-magnetic" class="nav-sub">Magnetic Field</a>
+  <a href="#m6" class="nav-section">6. Habitable Zone</a>
+  <a href="#m7" class="nav-section">7. Exoplanets</a>
+  <a href="#m8" class="nav-section">8. Minerals</a>
+</nav>
+
+<!-- ══ MAIN ══ -->
+<main>
+
+<div class="page-header">
+  <div class="course-tag">Geology / Planetary Science </div>
+  <h1>NEO Camp 26: Planet Earth — Complete Study Note </h1>
+  <p class="subtitle">A full, evidence-focused guide. Every claim is paired with how scientists discovered it, so you understand the reasoning, not just the facts. <br>
+<b>Prepared by Ashraful Islam Mahi, Co-Lead, NEO Academic Team '26, '25, IESO '23</b> </p>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     MODULE 1 — THE BIG BANG
+══════════════════════════════════════════════ -->
+<div class="module" id="m1">
+  <div class="module-label">Module 1</div>
+  <h2>The Origin of the Universe</h2>
+
+  <p>Before we can understand Earth, we have to understand where all of the material that makes up Earth actually came from. That story starts at the very beginning — the Big Bang.</p>
+
+  <h3>The Big Bang Theory</h3>
+  <p>Approximately <strong>13.8 billion years ago</strong>, the entire universe — all of space, time, matter, and energy — began from a single point called a <span class="term">Singularity</span>. This was not an explosion inside existing space; it was an explosion <em>of</em> space itself. From that moment, the universe began expanding in all directions simultaneously, gradually cooling as it expanded, until matter could form.</p>
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/CMB_Timeline300_no_WMAP.jpg/1920px-CMB_Timeline300_no_WMAP.jpg" style="max-width:100%; height:auto;" />
+  <p>The two most important things the Big Bang produced were the two lightest elements: <strong>Hydrogen</strong> (about 75%) and <strong>Helium</strong> (about 25%). Everything heavier — every carbon atom in your body, every iron atom in Earth's core — was forged later inside the cores of stars and scattered across space when those stars exploded as supernovae. This is why scientists say we are all "made of stardust."</p>
+
+  <div class="callout callout-exam">
+    <div class="callout-title">Why This Matters for Earth</div>
+    <p>The Big Bang only made H and He. Stars made everything heavier. So every rock, every ocean, every living thing on Earth is made of material that was once inside a dead star. This sets the stage for everything that follows.</p>
+  </div>
+
+  <h3 id="m1-evidence">How Do We Know? — The Three Lines of Evidence</h3>
+  <p>You might reasonably ask: how could anyone know what happened 13.8 billion years ago? Scientists have three independent, converging lines of evidence.</p>
+
+  <h4>Evidence 1 — Galactic Redshift (The Expanding Universe)</h4>
+  <p>In the 1920s, the astronomer <strong>Edwin Hubble</strong> discovered something strange: every distant galaxy is moving <em>away</em> from us. He detected this using the <span class="term">Doppler effect</span> applied to light. When a source of light moves away from an observer, the light waves are stretched out — shifted toward the red end of the spectrum. This is called <span class="term">Redshift</span>. (Conversely, when something moves toward you, light waves compress into a blueshift.)</p>
+<img src="https://th.bing.com/th/id/R.84d9240025ab8d7f3dbd4db9b6e9da2f?rik=UcF70FKAF3aYxg&riu=http%3a%2f%2fvoyages.sdss.org%2fwp-content%2fuploads%2f2019%2f07%2fredshiftblueshift.png&ehk=esAcrziKCBb2yOXRH8gQTvoSs6V8%2bLOCmu7uwMTmznk%3d&risl=&pid=ImgRaw&r=0" style="max-width:100%; height:auto;" />
+  <p>The stunning implication is this: if every galaxy is flying away from every other galaxy today, then if you run the clock backward in time, all of those galaxies must have been closer together in the past — and eventually, all of them would be packed into a single point. The expansion of the universe is the most direct evidence that the universe had a beginning.</p>
+
+  <div class="callout callout-evidence">
+    <div class="callout-title">The Reasoning Chain</div>
+    <p>Everything is moving apart now → running time backward, everything was once closer → at time zero, everything must have occupied a single point → therefore, there was a moment of creation (the Big Bang).</p>
+  </div>
+
+  <h4>Evidence 2 — The Cosmic Microwave Background (CMB)</h4>
+  <p>After the Big Bang, the universe was an extremely hot, opaque fog of plasma. It was so hot that photons (light particles) could not travel freely — they were constantly absorbed and re-emitted. About <strong>300,000 years</strong> after the Big Bang, the universe had cooled enough for electrons and protons to combine into neutral hydrogen atoms. For the first time, photons could travel freely. That first flash of light is still traveling through the universe today, but because the universe has expanded so much, those light waves have been stretched into the microwave part of the spectrum.</p>
+<img src="https://www.techexplorist.com/wp-content/uploads/2023/04/cmb-radiation.jpg" style="max-width:100%; height:auto;" />
+<p>In 1965, scientists Arno Penzias and Robert Wilson accidentally detected this radiation — a faint but perfectly uniform microwave "hiss" coming from every direction in the sky equally. This is the <span class="term">Cosmic Microwave Background (CMB)</span>, essentially a photograph of the universe at 300,000 years old. Its existence is a direct fingerprint of the Big Bang.</p>
+
+  <h4>Evidence 3 — Elemental Ratios (Big Bang Nucleosynthesis)</h4>
+  <p>In the first few minutes after the Big Bang, the universe was hot enough to fuse protons and neutrons into atomic nuclei. Physicists can calculate exactly how much Hydrogen and Helium this process would have produced. The prediction is approximately <strong>75% Hydrogen and 25% Helium</strong>. When astronomers look at the oldest, most primitive stars in the universe, this is exactly what they find. The match between theoretical prediction and observation is one of the strongest confirmations of the Big Bang model.</p>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     MODULE 2 — BUILDING PLANETS
+══════════════════════════════════════════════ -->
+<div class="module" id="m2">
+  <div class="module-label">Module 2</div>
+  <h2>Building Planets &amp; The Solar System</h2>
+
+  <p>Stars forge heavy elements and then scatter them into space. When a cloud of this gas and dust collapses under gravity to form a new star, the leftover material forms a flat, spinning disc around it — the <span class="term">protoplanetary disc</span>. Our Solar System formed from exactly such a disc, about 4.6 billion years ago. The question is: how does a swirling cloud of dust become eight distinct planets?</p>
+
+
+
+  <h3 id="m2-accretion">Accretion and the Frost Line</h3>
+  <p>The process is called <span class="term">Accretion</span> — the gradual clumping of small particles into progressively larger bodies. Tiny dust grains stuck together to form pebbles, pebbles stuck together to form boulders, and boulders eventually grew into <span class="term">planetesimals</span> (small proto-planets), and then finally full-sized planets. This process took approximately <strong>50–100 million years</strong> to complete.</p>
+
+  <p>However, not all regions of the disc were the same. The Sun's intense heat had a critical effect that explains why the inner and outer planets are so different from each other.</p>
+<img src="https://upload.wikimedia.org/wikipedia/commons/5/56/Soot-line1.jpg" style="max-width:100%; height:auto;" />
+  <div class="callout callout-diagram">
+    <div class="callout-title">Diagram: The Protoplanetary Disc & Frost Line</div>
+    <p>Imagine the early Solar System as a flat disc of gas and dust glowing around the young Sun. Close to the Sun, the temperature was so high that all <span class="term">volatile</span> (easily evaporated) molecules — water, methane, ammonia — were boiled off and pushed outward. Only <span class="term">refractory</span> (heat-resistant, non-volatile) materials like metal oxides and silicates could survive near the Sun.</p>
+    <p>There is a specific distance from the Sun called the <span class="term">Frost Line</span> (also called the ice line), which coincides roughly with the position of today's asteroid belt. Beyond this line, temperatures were cold enough for water ice and other volatiles to solidify. The frost line is the most important boundary in the Solar System because it dictated what each planet was made of.</p>
+  </div>
+
+  <p>The consequence of the frost line is profound. Inside the frost line, only refractory rocky material could exist. Since rocky, solid materials were relatively rare in the disc compared to the abundant gases and ices, <strong>the inner planets (Mercury, Venus, Earth, Mars) are small and rocky</strong> — they simply didn't have much building material to work with. Beyond the frost line, there was an enormous abundance of ice and gas, so the outer planets had far more material available and grew into the enormous <strong>gas and ice giants</strong> we see today.</p>
+
+  <h3 id="m2-late">Late Accretion</h3>
+  <p>Here is a surprising fact from the slides: when the proto-Earth had grown to only about <strong>0.05 Earth masses</strong> (just 5% of its current size), the vast majority of the easily available dust in the disc had already been swept up or blown away. In other words, Earth formed most of its bulk not from sweeping up loose dust, but from violent collisions. The remaining <strong>90–95% of Earth's mass</strong> came from direct collisions with other planetesimals, protoplanets (sometimes called embryos), and comets. Earth grew up through a prolonged period of cosmic bombardment.</p>
+<img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/0dbcb2d4-2a6d-47cc-a83f-490368b98e9e/dfnafou-f9ef9edb-0d76-4ed2-baf6-6c22338bf238.jpg/v1/fill/w_1280,h_836,q_75,strp/planet_destroyed_in_collision_by_mikdam68_dfnafou-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9ODM2IiwicGF0aCI6IlwvZlwvMGRiY2IyZDQtMmE2ZC00N2NjLWE4M2YtNDkwMzY4Yjk4ZTllXC9kZm5hZm91LWY5ZWY5ZWRiLTBkNzYtNGVkMi1iYWY2LTZjMjIzMzhiZjIzOC5qcGciLCJ3aWR0aCI6Ijw9MTI4MCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.i5I_NZGLyp9gL0ZsiQ3ccwDRHfRtJYOFiihkgqV4i4M" style="max-width:100%; height:auto;" />
+  <div class="callout callout-warning">
+    <div class="callout-title">We Got Lucky</div>
+    <p>Many of those late collisions could have been catastrophic. A large, head-on impact from a massive body could have shattered the proto-Earth entirely and destroyed it. The fact that Earth survived to become a habitable world is partly a matter of extraordinary luck in the geometry of its impacts.</p>
+  </div>
+
+  <h3 id="m2-impacts">Impacts, Axial Tilts, and the Moon</h3>
+  <p>Those late collisions left permanent scars on every planet, and we can read their history by looking at how planets spin.</p>
+
+  <h4>Axial Tilt (Obliquity) as Evidence of Ancient Collisions</h4>
+  <p>If the Solar System had formed perfectly and smoothly, every planet would spin perfectly upright relative to its orbit. But they don't. Each planet carries the "memory" of the violent impacts it suffered during formation. The angle at which a planet's axis is tilted relative to its orbital plane is called its <span class="term">obliquity</span>.</p>
+
+  <div class="planet-grid">
+    <div class="planet-card"><div class="planet-name">Mercury</div><div class="planet-tilt">0.1°</div></div>
+    <div class="planet-card"><div class="planet-name">Venus</div><div class="planet-tilt">177°</div><div style="font-size:10px;color:#8a8680">nearly upside-down</div></div>
+    <div class="planet-card"><div class="planet-name">Earth</div><div class="planet-tilt">23°</div></div>
+    <div class="planet-card"><div class="planet-name">Mars</div><div class="planet-tilt">25°</div></div>
+    <div class="planet-card"><div class="planet-name">Jupiter</div><div class="planet-tilt">3°</div></div>
+    <div class="planet-card"><div class="planet-name">Saturn</div><div class="planet-tilt">27°</div></div>
+    <div class="planet-card extreme"><div class="planet-name">Uranus</div><div class="planet-tilt">98°</div><div style="font-size:10px;color:#993c1d">on its side</div></div>
+    <div class="planet-card"><div class="planet-name">Neptune</div><div class="planet-tilt">30°</div></div>
+    <div class="planet-card extreme"><div class="planet-name">Pluto</div><div class="planet-tilt">120°</div></div>
+  </div>
+<img src="https://i.ibb.co.com/n8bwPDTM/Screenshot-2026-05-23-090748.png" style="max-width:100%; height:auto;" />
+  <p>Uranus at 98° essentially rolls around the Sun on its side. Pluto is tilted at 120°. These extreme tilts are the direct, physical proof that these bodies were hit by massive objects during the late accretion period. A large impact could also explain why Mercury has very little mantle and crust — a violent collision may have stripped much of that material away, leaving behind its disproportionately large iron core.</p>
+
+  <h4>The Formation of the Moon — The Theia Impact</h4>
+  <p>The most important late impact for Earth was the collision with a Mars-sized body scientists have named <span class="term">Theia</span>. The sequence of events is understood as follows: approximately 4.5 billion years ago, Theia struck the proto-Earth at an angle. The impact was so violent that it blasted an enormous amount of material from Earth's crust and mantle into orbit. This orbiting material gradually accreted to form the Moon.</p>
+
+  <p>This impact had a lasting effect on Earth's internal structure as well: it gave Earth a <strong>slightly larger iron core than it should otherwise have</strong>, because Theia's own iron core merged with Earth's. In contrast, because the Moon formed from the ejected crust and mantle material (not core material), the Moon has either a very small core or possibly none at all.</p>
+<img src="https://orbitaltoday.com/wp-content/uploads/2024/05/thea-collision-earth.jpg" style="max-width:100%; height:auto;" />
+  <div class="callout callout-evidence">
+    <div class="callout-title">How Do We Know the Moon Formed This Way?</div>
+    <p>The most compelling evidence is the chemical similarity between Moon rocks and Earth rocks. When Apollo astronauts brought back lunar samples, geologists found that the composition of Moon rocks is <em>almost identical</em> to Earth's mantle rocks — not random asteroid material or captured debris from elsewhere in the Solar System. The Moon had to have formed from Earth's own material.</p>
+    <p>Compare this to Neptune's moon Triton, which has a <em>retrograde orbit</em> (it orbits backward, opposite to Neptune's rotation) and is chemically dissimilar to Neptune. This tells us Triton was not formed in orbit — it was captured from elsewhere in the Solar System. The contrast perfectly illustrates how we can use orbital behavior and chemistry together to reconstruct a moon's origin.</p>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     MODULE 3 — EARTH'S INTERIOR
+══════════════════════════════════════════════ -->
+<div class="module" id="m3">
+  <div class="module-label">Module 3</div>
+  <h2>Earth's Internal Architecture</h2>
+
+  <h3 id="m3-diff">Planetary Differentiation</h3>
+  <p>After all of those violent impacts, early Earth was an enormous, glowing ball of molten rock — a <span class="term">Magma Ocean</span>. In this completely liquid state, a process called <span class="term">Planetary Differentiation</span> took place: gravity sorted all the materials by density. The heaviest elements (iron, nickel) sank toward the center, while the lightest materials (silicates) floated to the top. This is exactly the same reason that if you shake a jar of soil and water, the sand sinks and the lighter clay floats.</p>
+
+  <p>The result of differentiation is that Earth is <em>not</em> a uniform ball of rock. It is a layered structure, with each layer having a distinct chemical composition.</p>
+<img src="https://www.luckysci.com/wp-content/uploads/2014/06/995px-Earth-crust-cutaway-english.svg_.png" style="max-width:100%; height:auto;" />
+  <h4>Evidence 1 — The 320 km Spherical Threshold</h4>
+  <p>Look at any asteroid: they are irregular, potato-shaped objects with bumps and craters. But any body with a diameter larger than roughly <strong>320 km</strong> is a perfect sphere. Why? Because only bodies larger than this generate enough internal heat from their own formation (through radioactive decay and the energy of accretion) to completely melt their interiors. Once melted, gravity pulls the material into the most gravitationally stable shape — a perfect sphere. This is direct evidence that large bodies in the early Solar System underwent the same melting and differentiation that Earth did.</p>
+<img src="https://64.media.tumblr.com/b05d450cd2c23e637fd6c35fca5b6422/tumblr_inline_os7lfzvGSF1tzhl5u_1280.jpg" style="max-width:100%; height:auto;" />
+  <h4>Evidence 2 — Iron Meteorites</h4>
+  <p>We find two very different types of meteorites on Earth: rocky meteorites and iron meteorites. The iron meteorites are composed almost entirely of iron-nickel alloy, and they display a distinctive crystalline crisscross pattern called <span class="term">Widmanstätten texture</span>, which forms only when iron-nickel alloy cools extremely slowly over millions of years — exactly as a planetary core would cool. These meteorites are the shattered cores of early planets that formed, differentiated, and were then destroyed by subsequent massive collisions. They prove that planetary differentiation is a universal process, not unique to Earth.</p>
+<img src="https://upload.wikimedia.org/wikipedia/commons/8/86/TolucaMeteorite.jpg" style="max-width:100%; height:auto;" />
+
+  <h3 id="m3-layers">The Two Ways to Divide Earth</h3>
+  <p>Geologists actually describe Earth's layers in two entirely different ways depending on what they want to study. It is crucial not to confuse these two classification systems.</p>
+
+  <div class="callout callout-concept">
+    <div class="callout-title">Key Concept: Two Independent Classification Systems</div>
+    <p><strong>System 1: By Chemical Composition</strong> — What is the layer made of? (4 layers)<br>
+    <strong>System 2: By Mechanical Properties</strong> — Does the layer behave as a rigid solid, a flowing plastic, or a liquid? (5 layers)</p>
+    <p>These two systems do not perfectly overlap. For example, the "Lithosphere" in the mechanical system spans across parts of both the crust and the upper mantle in the chemical system.</p>
+  </div>
+<img src="https://labster-image-manager.s3.amazonaws.com/v2/THE/f4f34ccf-5648-4c21-82e9-1828af000122/DOT_EarthLayers.en.x1024.png" style="max-width:100%; height:auto;" />
+  <h4>Classification by Chemical Composition (What it's made of)</h4>
+
+  <div class="layers-visual">
+    <div class="layer-row">
+      <div class="layer-swatch" style="background:#d4b896;"></div>
+      <div class="layer-name">Continental Crust</div>
+      <div class="layer-comp">Sodium, Potassium, Calcium silicates + Quartz. Low density (~2.7 g/cm³). Thick (10–70 km) but light.</div>
+      <div class="layer-depth">10–70 km</div>
+    </div>
+    <div class="layer-row">
+      <div class="layer-swatch" style="background:#b09070;"></div>
+      <div class="layer-name">Oceanic Crust</div>
+      <div class="layer-comp">Calcium & Iron silicates (basalt/gabbro). Denser than continental crust (~3.0 g/cm³). Thin (5–7 km).</div>
+      <div class="layer-depth">5–7 km</div>
+    </div>
+    <div class="layer-row">
+      <div class="layer-swatch" style="background:#8fb55e;"></div>
+      <div class="layer-name">Mantle</div>
+      <div class="layer-comp">Iron-Magnesium silicates (Olivine, Pyroxene). Density 3.2–3.4 g/cm³. Makes up ~84% of Earth's volume.</div>
+      <div class="layer-depth">to ~2,900 km</div>
+    </div>
+    <div class="layer-row">
+      <div class="layer-swatch" style="background:#c8a840;"></div>
+      <div class="layer-name">Core</div>
+      <div class="layer-comp">Iron-Nickel alloy (Fe-Ni). Extremely dense (~10–13 g/cm³). Outer core is liquid, inner core is solid.</div>
+      <div class="layer-depth">to ~6,371 km</div>
+    </div>
+  </div>
+
+  <h4>Classification by Mechanical Properties (How it behaves)</h4>
+
+  <div class="layers-visual">
+    <div class="layer-row">
+      <div class="layer-swatch" style="background:#4a7da8;"></div>
+      <div class="layer-name">Lithosphere</div>
+      <div class="layer-comp"><strong>Rigid solid.</strong> Includes the crust + uppermost mantle. This is what we call "tectonic plates." Thickness: 10–200 km.</div>
+      <div class="layer-depth">0–200 km</div>
+    </div>
+    <div class="layer-row">
+      <div class="layer-swatch" style="background:#7db0d8;"></div>
+      <div class="layer-name">Asthenosphere</div>
+      <div class="layer-comp"><strong>Plastic/flowing.</strong> A partially molten, "slushy" layer that can flow slowly over geological time. Tectonic plates glide on this layer. Its lower boundary is at ~700 km depth.</div>
+      <div class="layer-depth">~100–700 km</div>
+    </div>
+    <div class="layer-row">
+      <div class="layer-swatch" style="background:#5a6ea8;"></div>
+      <div class="layer-name">Mesosphere</div>
+      <div class="layer-comp"><strong>Rigid solid</strong> (also called the Lower Mantle). Despite high temperatures, the extreme pressure keeps it solid. It convects, but much more slowly than the asthenosphere.</div>
+      <div class="layer-depth">~700–2,900 km</div>
+    </div>
+    <div class="layer-row">
+      <div class="layer-swatch" style="background:#e8a030;"></div>
+      <div class="layer-name">Outer Core</div>
+      <div class="layer-comp"><strong>Completely liquid.</strong> Molten Fe-Ni alloy. Its movement generates Earth's magnetic field. Proven liquid by seismic evidence (see Module 4).</div>
+      <div class="layer-depth">~2,900–5,150 km</div>
+    </div>
+    <div class="layer-row" style="border-bottom:none;">
+      <div class="layer-swatch" style="background:#e8e030;"></div>
+      <div class="layer-name">Inner Core</div>
+      <div class="layer-comp"><strong>Completely solid.</strong> Despite being the hottest part of Earth (~5,000–6,000°C), the immense pressure forces it into a solid state. Proven solid by seismic evidence (see Module 4).</div>
+      <div class="layer-depth">~5,150–6,371 km</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     MODULE 4 — SEISMOLOGY
+══════════════════════════════════════════════ -->
+<div class="module" id="m4">
+  <div class="module-label">Module 4</div>
+  <h2>Seismology — X-Raying the Planet</h2>
+
+  <p>We cannot drill deeper than about 12 km into the Earth — the deepest hole ever drilled (the Kola Superdeep Borehole in Russia) reached only that depth before the pressure and heat made drilling impossible. Yet we claim to know the precise structure of a planet that extends 6,371 km to its center. How? The answer is earthquakes.</p>
+
+  <p>Earthquakes generate powerful energy waves — <span class="term">Seismic Waves</span> — that travel through the entire Earth. By recording how these waves travel and where they arrive (or fail to arrive), we can infer the properties of every layer they pass through. Think of it as a natural ultrasound machine for the planet.</p>
+
+  <h3 id="m4-waves">The Four Types of Seismic Waves</h3>
+  <p>Earthquakes actually produce four types of waves, but only two are useful for studying Earth's interior.</p>
+<img src="https://www.sciencefacts.net/wp-content/uploads/2020/04/Seismic-Waves.jpg" style="max-width:100%; height:auto;" />
+  <div class="compare-grid">
+    <div class="compare-card" style="border-top: 3px solid #378add;">
+      <h4 style="color:#185fa5;">Rayleigh Waves (Surface)</h4>
+      <ul>
+        <li>Travel along the surface only</li>
+        <li>Cannot penetrate the Earth's interior</li>
+        <li>Useless for internal structure</li>
+      </ul>
+    </div>
+    <div class="compare-card" style="border-top: 3px solid #378add;">
+      <h4 style="color:#185fa5;">Love Waves (Surface)</h4>
+      <ul>
+        <li>Also travel along the surface only</li>
+        <li>Cannot penetrate the interior</li>
+        <li>Useless for internal structure</li>
+      </ul>
+    </div>
+    <div class="compare-card" style="border-top: 3px solid #0f6e56;">
+      <h4 style="color:#0f6e56;">P-Waves — Primary (Body)</h4>
+      <ul>
+        <li>Compressional waves — push and pull atoms in the direction of travel (like sound)</li>
+        <li>The fastest seismic waves</li>
+        <li>Travel through <strong>both solids and liquids</strong></li>
+        <li>Travel faster through solids than liquids</li>
+      </ul>
+    </div>
+    <div class="compare-card" style="border-top: 3px solid #6b2fa0;">
+      <h4 style="color:#6b2fa0;">S-Waves — Secondary (Body)</h4>
+      <ul>
+        <li>Shear waves — shake atoms side-to-side, perpendicular to travel</li>
+        <li>Slower than P-waves</li>
+        <li>Travel through <strong>solids ONLY</strong></li>
+        <li>Cannot travel through liquids — this is the key property</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout callout-exam">
+    <div class="callout-title">The One Rule to Remember</div>
+    <p>S-waves cannot travel through liquids. P-waves can travel through anything. This single rule is what allows us to determine which parts of Earth are solid and which are liquid.</p>
+  </div>
+
+  <h3 id="m4-shadow">Proving the Liquid Outer Core &amp; Solid Inner Core</h3>
+
+  <h4>The S-Wave Shadow Zone — Proving the Outer Core is Liquid</h4>
+  <p>When an earthquake occurs, seismometers placed all around the world record its waves. For S-waves (shear waves), scientists observe something remarkable: stations located more than 103° of arc away from the earthquake source record <em>nothing</em>. There is a giant "shadow zone" on the far side of the planet where S-waves never arrive. This shadow zone spans from about 103° to 180° on the opposite side of the Earth.</p>
+  <p>The explanation is simple once you know the rule: S-waves hit the mantle-core boundary and are completely absorbed, because <strong>S-waves cannot travel through liquid</strong>. The presence of the S-wave shadow zone is the definitive proof that the Outer Core is liquid. Moreover, the exact size of the shadow zone allows us to calculate the precise diameter of the liquid core.</p>
+<img src="https://www.luckysci.com/wp-content/uploads/2014/07/seismic-waves.jpg" style="max-width:100%; height:auto;" />
+  <h4>P-Waves Arriving Too Early — Proving the Inner Core is Solid</h4>
+  <p>P-waves (which can travel through both solids and liquids) do make it through to the far side of the planet. But when scientists measure exactly when they arrive, they find that some P-waves arrive <em>earlier than expected</em>. If the entire core were liquid, these waves should be slower (P-waves are faster in solids). The fact that they are faster than expected means they passed through a solid region inside the liquid core. This proves there is a <strong>solid Inner Core</strong> hidden inside the liquid Outer Core. The "P-waves arrive too early" observation was the discovery of the inner core.</p>
+
+ 
+  <h3 id="m4-phase">Phase Changes and the 410 km, 520 km, and 660 km Boundaries</h3>
+  <p>Seismic waves don't just reveal which layers are solid or liquid — they also reveal changes happening within layers. As you descend deeper into the mantle, both pressure and temperature increase dramatically. Most minerals cannot survive these extreme conditions without changing their internal crystal structure to pack atoms more tightly together. This is called a <span class="term">phase change</span> or polymorphic transition — the same atoms rearrange into a denser crystal structure.</p>
+  <p>The classic example is the mineral <span class="term">Olivine</span> (Mg₂SiO₄), which is the most abundant mineral in the upper mantle. As pressure increases with depth, Olivine undergoes three successive phase changes, each producing a denser version of the same atoms:</p>
+
+  <div class="phase-chain">
+    <div class="phase-node" style="border-radius:6px 0 0 6px;">
+      <div class="mineral">Olivine</div>
+      <div class="formula">Mg₂SiO₄</div>
+      <div class="density">3.2</div>
+      <div style="font-size:11px;color:var(--text-light);">g/cm³</div>
+      <div class="depth">Upper Mantle</div>
+    </div>
+    <div class="phase-node">
+      <div class="mineral">Wadsleyite</div>
+      <div class="formula">Mg₂SiO₄</div>
+      <div class="density">3.84</div>
+      <div style="font-size:11px;color:var(--text-light);">g/cm³</div>
+      <div class="depth">at 410 km</div>
+    </div>
+    <div class="phase-node">
+      <div class="mineral">Ringwoodite</div>
+      <div class="formula">Mg₂SiO₄</div>
+      <div class="density">3.90</div>
+      <div style="font-size:11px;color:var(--text-light);">g/cm³</div>
+      <div class="depth">at 520 km</div>
+    </div>
+    <div class="phase-node" style="border-radius:0 6px 6px 0;">
+      <div class="mineral">Silicate Perovskite</div>
+      <div class="formula">MgSiO₃</div>
+      <div class="density">4.02</div>
+      <div style="font-size:11px;color:var(--text-light);">g/cm³</div>
+      <div class="depth">at 660 km</div>
+    </div>
+  </div>
+
+  <p>Notice that the chemical formula for Wadsleyite and Ringwoodite is the <em>same</em> as Olivine — same atoms, just rearranged more tightly. Each phase change increases the density of the rock, which causes seismic waves to speed up suddenly at those depths. These sudden speed increases at 410 km and 660 km are clearly visible in seismic data, confirming the boundaries exactly.</p>
+<img src="https://expos-virtuelles.bu.uca.fr/expo-mineraux/docs/cristallographie/Schema-Olivine.jpg" style="max-width:100%; height:auto;" />
+  <div class="callout callout-concept">
+    <div class="callout-title">The 660 km Boundary is Significant</div>
+    <p>The 660 km boundary is the point where the Asthenosphere ends and the Mesosphere (lower mantle) begins in the mechanical layer classification. It is also where Ringwoodite transforms into Silicate Perovskite, the dominant mineral of the lower mantle.</p>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     MODULE 5 — COMPOSITION
+══════════════════════════════════════════════ -->
+<div class="module" id="m5">
+  <div class="module-label">Module 5</div>
+  <h2>What Is Earth Made Of? — Chemical Composition</h2>
+
+  <p>The deepest hole ever drilled into Earth reached just 12 km — a tiny scratch on a planet that extends 6,371 km to the center. We have never directly sampled the mantle or the core. So how do we confidently know what they are made of? The answer involves some brilliant geological detective work.</p>
+
+  <h3 id="m5-mantle">Discovering the Mantle's Composition</h3>
+
+  <h4>Method 1 — Xenoliths ("Foreign Rocks")</h4>
+  <p>Occasionally, magma forming deep in the Earth rises rapidly to the surface during a volcanic eruption. As it travels upward through the crust and into the upper mantle, it sometimes violently rips off chunks of the surrounding mantle rock and carries them up to the surface. These chunks are called <span class="term">Xenoliths</span> — literally "foreign rocks" — because they are chemically distinct from the volcanic rock that surrounds them. They are un-melted, fresh samples of the mantle delivered to us by volcanic eruptions.</p>
+<img src="https://upload.wikimedia.org/wikipedia/commons/4/40/Peridotitic_mantle_xenolith.JPG" style="max-width:100%; height:auto;" />
+  <p>When geologists analyze xenoliths, they are almost always made of a green-colored rock called <span class="term">Peridotite</span>, which is primarily composed of Olivine and Pyroxene. This is the direct proof that the upper mantle is made of iron-magnesium silicates.</p>
+
+  <h4>Method 2 — Ophiolites (Obduction)</h4>
+  <p>Normally, when oceanic crust meets continental crust at a subduction zone, the denser oceanic crust sinks (subducts) beneath the lighter continental crust. Rarely, this process fails and the oceanic crust — together with a section of mantle rock attached to its underside — gets shoved <em>on top of</em> the continent instead. This process is called <span class="term">Obduction</span>, and the entire sequence of ocean floor + mantle rock is called an <span class="term">Ophiolite</span>.</p> 
+<img src="https://upload.wikimedia.org/wikipedia/commons/0/0c/Chromitic_serpentinite_%28Little_Port_Complex%2C_Bay_of_Islands_Ophiolite%2C_Middle_Cambrian%2C_505_Ma%3B_Springer%27s_Hill_outcrop%2C_Lewis_Hills%2C_Newfoundland%29_4.jpg" style="max-width:100%; height:auto;" />
+  <p>Ophiolites are valuable because they are large, giving us a wide view of the ocean floor and mantle structure. However, there is a catch: the mantle rocks in ophiolites have been altered by water through a process called <span class="term">Serpentinization</span>. Water chemically reacts with the olivine and pyroxene, changing them into a group of minerals called serpentinite. This ruins the original chemistry of the rock. So while ophiolites are excellent for understanding the large-scale <em>structure</em> of the mantle, they are not reliable for telling us about its original <em>chemistry</em> — for that, we rely on xenoliths instead.</p>
+<div class="callout callout-concept">
+    <div class="callout-title">Homework 1:</div>
+    <p>The stratigraphic-like sequence observed in ophiolites corresponds to the lithosphere-forming processes at mid-oceanic ridges. You may define a term "Pseudostratigraphy" from the idea of ophiolites. From top to bottom, what can be the layers in the sequence? Why? Find a real-world example of it related to one of your NEO National Round 2026 questions. (Word limit: 250 words) </p>
+  </div>
+</div>
+
+  <h3 id="m5-core">Discovering the Core's Composition — The Missing Mass Problem</h3>
+  <p>We know Earth's total mass from Isaac Newton's laws of gravitation, and from its known diameter, we can calculate its average density. That average density is approximately <strong>5.5 g/cm³</strong>.</p>
+  <p>Now look at what we actually observe in the accessible parts of Earth:</p>
+
+  <table class="data-table">
+    <thead><tr><th>Layer</th><th>Density</th><th>Conclusion</th></tr></thead>
+    <tbody>
+      <tr><td>Crust</td><td>2.5–2.8 g/cm³</td><td class="highlight-cell">Way too light — far below average</td></tr>
+      <tr><td>Mantle</td><td>3.2–3.4 g/cm³</td><td class="highlight-cell">Still too light — still below average</td></tr>
+      <tr><td>Earth average</td><td>5.5 g/cm³</td><td class="good-cell">The math demands something very dense at center</td></tr>
+    </tbody>
+  </table>
+
+  <p>The crust and mantle together are far too light to account for Earth's total mass. Something extremely dense must exist at the center. But what material could it be?</p>
+
+  <h4>The Chondrite Clue</h4>
+  <p><span class="term">Chondrites</span> are the most chemically primitive meteorites we find on Earth. They represent the raw, unprocessed material from the early Solar System — essentially the original recipe that Earth was assembled from. When scientists analyze chondrites, they find they are packed with Iron and Nickel.</p>
+  <p>Now compare this to Earth's crust and mantle:</p>
+
+  <table class="data-table">
+    <thead><tr><th>Element</th><th>Chondrite (starting mix)</th><th>Crust</th><th>Mantle</th><th>Core</th></tr></thead>
+    <tbody>
+      <tr><td>Silicon (Si)</td><td>15.6%</td><td>27.1%</td><td>22.3%</td><td>6.0%</td></tr>
+      <tr><td>Iron (Fe)</td><td>27.2%</td><td class="highlight-cell">5.83%</td><td class="highlight-cell">6.13%</td><td class="good-cell">85%</td></tr>
+      <tr><td>Nickel (Ni)</td><td>1.51%</td><td class="highlight-cell">0.002%</td><td class="highlight-cell">0.19%</td><td class="good-cell">5.2%</td></tr>
+      <tr><td>Magnesium (Mg)</td><td>14.1%</td><td>2.11%</td><td>19.5%</td><td>0</td></tr>
+    </tbody>
+  </table>
+
+  <p>The crust and mantle are severely depleted in Iron and Nickel compared to the chondrite starting material. If the starting material contained 27.2% Iron but the crust and mantle are almost empty of it, where did all that iron go? The deduction is unavoidable: <strong>the Iron and Nickel sank to the center and formed the Core</strong>. Iron is the densest common element in the Solar System, so it provides the "missing mass" that explains Earth's high average density.</p>
+<img src="https://upload.wikimedia.org/wikipedia/commons/0/06/10499_-_Detailed_Slice.png" style="max-width:100%; height:auto;" />
+  <p>This is confirmed by iron meteorites (shattered planetary cores with their distinctive Widmanstätten texture), which prove that planetary cores of pure Fe-Ni form through the same differentiation process.</p>
+
+  <h3 id="m5-formation">How the Core Actually Formed — Step by Step</h3>
+  <p>Early Earth was a Magma Ocean. Iron didn't simply "fall" to the center in one instant. The process followed a specific physical sequence:</p>
+
+  <div class="step-list">
+    <div class="step-item">
+      <div class="step-num">1</div>
+      <div class="step-content"><strong>Saturation:</strong> The silicate magma ocean dissolved as much iron as it chemically could. Eventually, it became completely saturated — like water that can't dissolve any more salt. The excess iron had to form its own separate liquid.</div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">2</div>
+      <div class="step-content"><strong>Immiscibility:</strong> This iron liquid was <em>immiscible</em> with the silicate magma — just like oil and water, they refused to mix. The iron formed tiny liquid droplets dispersed throughout the silicate magma. The iron droplets coalesced (merged) into progressively larger and larger droplets.</div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">3</div>
+      <div class="step-content"><strong>Sinking:</strong> Once the droplets were heavy enough, gravity pulled them downward through the magma toward the center of the Earth, forming a growing ball of Fe-Ni alloy at the center — the proto-core.</div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">4</div>
+      <div class="step-content"><strong>Crystal Mush:</strong> As the Earth gradually cooled, heavy minerals like Olivine began to crystallize and sink. This formed a thick, mushy region of crystals surrounding the growing core, through which the iron droplets had to percolate.</div>
+    </div>
+  </div>
+
+  <h4>Two Models of Core Formation</h4>
+  <div class="compare-grid">
+    <div class="compare-card" style="border-top: 3px solid #1d9e75;">
+      <h4 style="color:#0f6e56;">Equilibrium Formation</h4>
+      <p style="font-size:14px;">Iron droplets slowly percolated and filtered their way downward through the crystal mush, constantly reacting chemically with surrounding minerals as they sank to the center. A slow, continuous process.</p>
+    </div>
+    <div class="compare-card" style="border-top: 3px solid #d85a30;">
+      <h4 style="color:#993c1d;">Disequilibrium Formation (Giant Impacts)</h4>
+      <p style="font-size:14px;">When a massive, already-differentiated planetesimal struck Earth, it was too large to melt and mix. Its entire iron core punched directly through Earth's magma ocean and crystal mush, sinking straight into Earth's core without equilibrating with surrounding material.</p>
+    </div>
+  </div>
+<img src="https://i.ibb.co.com/W49Z6xYf/Screenshot-2026-05-23-110405.png" style="max-width:100%; height:auto;" />
+  <div class="callout callout-evidence">
+    <div class="callout-title">What Geologists Believe</div>
+    <p>Earth's core likely formed through a <em>hybrid</em> of both mechanisms. Gradual equilibrium percolation accounted for some core growth, while episodic giant impacts (like the Theia impact) contributed large slugs of iron directly. The fact that Earth's core is slightly larger than expected for a planet of its size supports the giant-impact contribution (specifically from Theia's core merging with Earth's).</p>
+  </div>
+
+  <h3 id="m5-crust">How Earth's Crust Formed — The Bowen's Reaction Series</h3>
+  <p>After the iron core formed, what happened to the remaining silicate magma ocean? It didn't stay liquid forever — it began to cool and crystallize. The order in which different minerals crystallize from cooling magma follows a predictable sequence called the <span class="term">Bowen's Reaction Series</span>.</p>
+
+  <p>The sequence relevant to Earth's crust formation went as follows:</p>
+
+  <div class="step-list">
+    <div class="step-item">
+      <div class="step-num">1</div>
+      <div class="step-content"><strong>Olivine and Pyroxene crystallize first</strong> (they have the highest melting points, so they are the first to solidify as the magma cools). These are denser than the surrounding magma, so they <em>sink</em> to the bottom. This becomes the material of the mantle.</div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">2</div>
+      <div class="step-content"><strong>Calcium-Plagioclase Feldspar crystallizes next.</strong> Unlike Olivine and Pyroxene, Ca-Plagioclase is <em>less dense</em> than the surrounding magma, so its crystals <em>float</em> to the surface of the magma ocean. This accumulation of floating feldspar crystals becomes <strong>Earth's first solid crust</strong> — a primitive anorthosite crust (very similar to what we see in the light-colored highland regions of the Moon today).</div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">3</div>
+      <div class="step-content"><strong>Fractional Crystallization of the residual magma.</strong> As each mineral crystallizes out, the remaining magma becomes enriched in the elements that are left over — the "incompatible elements" that don't fit into olivine, pyroxene, or Ca-plagioclase crystal structures: Sodium (Na), Potassium (K), Aluminum (Al), and Silicon (Si). This residual magma is progressively more enriched in these light elements. It eventually crystallizes to form alkali feldspar, Na-plagioclase, and quartz — the minerals that make up <strong>continental crust</strong>.</div>
+    </div>
+  </div>
+<img src="https://opentextbc.ca/physicalgeologyearle/wp-content/uploads/sites/145/2016/06/Bowen-reaction2.png" style="max-width:100%; height:auto;" />
+  <div class="callout callout-diagram">
+    <div class="callout-title">The Moon as Evidence for Early Crust Formation</div>
+    <p>The Moon's surface provides a remarkable window into what early Earth's crust would have looked like. The bright white highland regions of the Moon are made of <em>anorthosite</em> — the same calcium-plagioclase feldspar that would have formed Earth's first crust. The Moon was not re-processed by plate tectonics the way Earth was, so it preserved this ancient crust. Earth destroyed its own anorthosite crust through tectonics and recycling, but the Moon kept it intact.</p>
+<img src="https://www.simonhanmer52.ca/uploads/8/3/4/8/83482100/slide05_26_orig.jpg" style="max-width:100%; height:auto;" />
+  </div>
+
+  <h3 id="m5-magnetic">Earth's Magnetic Field</h3>
+  <p>The liquid Outer Core does more than just exist — it is in constant convective motion. Molten iron-nickel circulating in Earth's rotating liquid outer core generates electrical currents, which in turn generate Earth's powerful magnetic field. This is called the <span class="term">Geodynamo</span>.</p>
+  <p>Earth's magnetic field extends far into space and deflects the <span class="term">solar wind</span> — a constant stream of charged particles (protons and electrons) blasting outward from the Sun. Without this magnetic shield, the solar wind would gradually strip away Earth's atmosphere and bombard the surface with intense radiation, making complex life essentially impossible. Mars lost its magnetic field early in its history and subsequently lost most of its atmosphere to the solar wind — explaining why Mars today has a very thin atmosphere of only about 1% of Earth's atmospheric pressure.</p>
+<img src="https://live-production.wcms.abc-cdn.net.au/0ebd4c5adea1061093354af7d028dd68?src" style="max-width:100%; height:auto;" />
+  <p>The beautiful Northern and Southern Lights (auroras) are a visible consequence of the magnetic field: they occur where charged solar particles are funneled down along magnetic field lines into the polar atmosphere, causing atmospheric gases to glow.</p>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     MODULE 6 — HABITABLE ZONE
+══════════════════════════════════════════════ -->
+<div class="module" id="m6">
+  <div class="module-label">Module 6</div>
+  <h2>The Habitable Zone</h2>
+
+  <p>Even if a planet has the right building materials, it also needs to be in exactly the right location relative to its star for life to be possible. The region around a star where conditions are right for liquid water to exist on a planet's surface is called the <span class="term">Habitable Zone</span> — often nicknamed the <span class="term">Goldilocks Zone</span> because, like Goldilocks' porridge, the temperature is "just right" (not too hot, not too cold).</p>
+
+  <p>Liquid water is not just nice to have — it is absolutely critical for two reasons: (1) all known life requires liquid water to carry out biochemistry, and (2) liquid water acts as a lubricant for plate tectonics. Without plate tectonics, Earth could not recycle carbon dioxide through its long-term carbon cycle, and the greenhouse effect would eventually go out of control.</p>
+<img src="https://upload.wikimedia.org/wikipedia/commons/4/46/Gliese_581_-_2010.jpg" style="max-width:100%; height:auto;" />
+  <h3>Venus, Earth, and Mars — A Cautionary Tale</h3>
+  <p><strong>Venus</strong> is just slightly closer to the Sun than Earth. That small difference in distance means Venus receives more solar radiation, which caused its oceans (if it ever had them) to evaporate. Water vapor is itself a powerful greenhouse gas. More water vapor trapped more heat, causing more evaporation — a <span class="term">runaway greenhouse effect</span>. Today, Venus has a surface temperature of ~465°C, hot enough to melt lead.</p>
+  <p><strong>Mars</strong> sits just outside Earth's habitable zone. It received too little solar radiation to maintain liquid water, and its thin atmosphere (due to the loss of its magnetic field) could not provide sufficient greenhouse warming. Its surface water froze solid billions of years ago.</p>
+  <p><strong>Earth</strong> sits at just the right distance to maintain liquid water, helped by a moderate greenhouse effect from its atmosphere.</p>
+
+  <h3>The Four Factors That Determine a Planet's Temperature</h3>
+  <p>Simply being in the habitable zone is not enough — a planet must also actively manage its temperature. Four variables determine how warm a planet actually is:</p>
+
+  <div class="step-list">
+    <div class="step-item">
+      <div class="step-num">1</div>
+      <div class="step-content"><strong>Star Size and Age:</strong> A bigger star is brighter and hotter, pushing its habitable zone much further out. An older star tends to be cooler (dimmer), pulling the habitable zone inward. The habitable zone is not fixed — it moves as the star evolves.</div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">2</div>
+      <div class="step-content"><strong>Distance from the Star:</strong> Simply how far the planet is from its star determines how much raw solar radiation it receives. Closer = more heat. This is the most straightforward factor.</div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">3</div>
+      <div class="step-content"><strong>Bond Albedo (Reflectivity):</strong> How much of the incoming sunlight does the planet reflect back into space? A planet covered in white ice and clouds (high albedo) reflects a large fraction of sunlight and stays cold. A dark ocean (low albedo) absorbs more light and warms up. This creates a feedback: if ice forms, it reflects more sunlight, cooling the planet further and causing more ice — a potential "snowball Earth" scenario.</div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">4</div>
+      <div class="step-content"><strong>The Greenhouse Effect:</strong> Sunlight warms the ground during the day. At night, the ground radiates that energy back toward space as infrared (heat) radiation. Greenhouse gases — primarily water vapor, CO₂, and methane — absorb this outgoing infrared radiation and re-emit it back toward the surface, keeping the planet warm. Without any greenhouse effect, Earth's average temperature would be about –18°C (frozen). The greenhouse effect raises it to a habitable +15°C average.</div>
+    </div>
+  </div>
+
+  <div class="callout callout-exam">
+    <div class="callout-title">Exam Tip</div>
+    <p>Do not confuse the greenhouse effect with the ozone layer. The ozone layer protects against UV radiation. The greenhouse effect regulates temperature by trapping infrared heat. They are completely different mechanisms.</p>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     MODULE 7 — EXOPLANETS
+══════════════════════════════════════════════ -->
+<div class="module" id="m7">
+  <div class="module-label">Module 7</div>
+  <h2>Finding Exoplanets</h2>
+
+  <p>An <span class="term">exoplanet</span> (or extrasolar planet) is any planet orbiting a star other than our Sun. The Milky Way galaxy contains an estimated <strong>200–400 billion stars</strong> (with an upper limit approaching 1 trillion), and estimates predict a minimum of <strong>100 billion planets</strong> in the Milky Way alone. The sheer scale of numbers makes it statistically almost inevitable that many other habitable planets exist somewhere.</p>
+
+  <p>Finding them, however, is extraordinarily difficult. A planet is typically millions of times dimmer than its parent star and sits right next to it from our perspective. Directly imaging an exoplanet against the blinding light of a star is like trying to spot a firefly sitting next to a lighthouse from 10 km away. Instead, we don't look for planets directly — <strong>we look for how planets disturb their star</strong>.</p>
+
+  <h3>Method 1 — The Transit Method</h3>
+  <p>If a planet's orbit happens to be aligned so that it passes directly between us and its star (a transit), it blocks a tiny fraction of the star's light, causing a measurable dip in brightness.</p>
+<img src="https://opentextbc.ca/kzlab/wp-content/uploads/sites/360/2018/01/Transit-method.png" style="max-width:100%; height:auto;" />
+  <div class="callout callout-concept">
+    <div class="callout-title">How It Works</div>
+    <p><strong>Detection:</strong> A space telescope stares continuously at a star and measures its brightness with extreme precision. If a planet transits, the brightness dips by a tiny, predictable amount — perhaps 1% or less for a large planet like Jupiter, and far less for an Earth-sized planet. Crucially, the dip repeats at the same interval every time the planet completes one orbit. A repeating, regular dip pattern is the signature of an orbiting planet.</p>
+    <p><strong>What we learn:</strong> The size of the dip tells us the planet's size relative to its star (bigger dip = bigger planet). The period between dips tells us the orbital period, which through Kepler's laws tells us the orbital distance.</p>
+  </div>
+
+  <p><strong>Limitations:</strong> The planet's orbit must be aligned to pass in front of the star from our viewpoint — most planetary systems are not aligned this favorably. Also, the brightness dip is tiny, requiring instruments of extraordinary precision.</p>
+
+  <p><strong>Future capability:</strong> As telescopes like the James Webb Space Telescope (JWST) become more powerful, we can analyze the starlight that shines through the thin ring of atmosphere at the edge of a transiting planet. Different gases absorb different wavelengths of light, so by examining which wavelengths are missing, we can determine the exact chemical composition of an exoplanet's atmosphere — including whether it contains oxygen, methane, or water vapor, which could be biosignatures of life.</p>
+
+  <h3>Method 2 — The Radial-Velocity Method</h3>
+  <p>Gravity is a mutual force — a planet doesn't just orbit passively around a star. The planet also exerts a gravitational pull on the star, causing the star to "wobble" around the common center of mass between them. The star traces a tiny circle in space as the planet orbits.</p>
+<img src="https://astrobites.org/wp-content/uploads/2021/03/Screen-Shot-2021-03-19-at-8.38.30-AM.png" style="max-width:100%; height:auto;" />
+  <div class="callout callout-concept">
+    <div class="callout-title">How It Works</div>
+    <p><strong>Detection:</strong> From Earth, we observe this wobble as the star periodically moving slightly toward us (compressing the light waves — blueshift) and then slightly away from us (stretching the light waves — redshift). By measuring the Doppler shift of specific spectral lines in the star's light, we can detect this tiny velocity wobble.</p>
+    <p><strong>What we learn:</strong> The size of the wobble tells us the minimum mass of the planet (larger wobble = more massive planet). The period of the wobble gives us the orbital period.</p>
+  </div>
+
+  <p><strong>Bias toward Hot Jupiters:</strong> This method has a strong detection bias. The most massive planets orbiting closest to their star produce the largest, most obvious wobble and are therefore the easiest to find. This is why the first exoplanets discovered using this method were all "Hot Jupiters" — gas giants orbiting in very close, fast orbits. Earth-sized planets in habitable-zone orbits produce wobbles too small to detect with early instruments, though technology continues to improve.</p>
+
+  <div class="callout callout-diagram">
+    <div class="callout-title">Scale of the Universe </div>
+    <p>The Milky Way contains an estimated 200–400 billion stars (upper limit ~1 trillion). Estimates predict a minimum of 100 billion planets in the Milky Way alone. Astronomers had confirmed 3,800+ exoplanets across 2,800+ planetary systems, of which 630+ systems contained more than one confirmed planet. These numbers have grown substantially since then, reinforcing the conclusion that planets are the rule, not the exception.</p>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     MODULE 8 — MINERALS
+══════════════════════════════════════════════ -->
+<div class="module" id="m8">
+  <div class="module-label">Module 8</div>
+  <h2>The Nature of Minerals</h2>
+<img src="https://earthathome.org/wp-content/uploads/2020/08/Minerals-Page-Banner-2000px.jpg" style="max-width:100%; height:auto;" />
+  <p>Everything discussed above — the crust, mantle, and core — is ultimately made of minerals. Understanding what minerals are and how they work is essential for understanding geology at a fundamental level.</p>
+
+  <h3>The Modern Definition of a Mineral</h3>
+  <p>The old definition of a mineral required it to be "inorganic." This turned out to be problematic because diamonds — crystalline carbon that forms deep in the Earth under immense pressure — would technically be excluded (carbon is considered organic in chemistry). The modern definition therefore uses the term <span class="term">non-biogenic</span> instead of "inorganic."</p>
+
+  <p>A mineral today is defined as: a <strong>non-biogenic, naturally occurring, ordered solid with a crystal lattice</strong> that can accommodate a range of chemical compositions. Let's unpack what "accommodates a range of compositions" means — this is the concept of the Solid Solution Series.</p>
+
+  <h3>The Solid Solution Series — Why Minerals Are Never "Pure"</h3>
+  <p>If you try to analyze a naturally occurring mineral, you will almost never find a perfectly pure composition. Instead, minerals exist along a sliding scale between two "end-member" compositions. This is called the <span class="term">Solid Solution Series</span>.</p>
+
+  <p>The reason is <span class="term">Atomic Substitution</span>. In a crystal lattice, atoms occupy specific sites. If two different atoms are almost identical in size and have the same electrical charge, either atom can occupy the same lattice site without destabilizing the crystal structure. The two atoms are essentially interchangeable.</p>
+
+  <p>The perfect example is the mineral <span class="term">Olivine</span>:</p>
+
+  <div class="callout callout-diagram">
+    <div class="callout-title">The Olivine Solid Solution Series</div>
+    <p>Olivine has two "pure" end-member compositions:</p>
+    <p><strong>Forsterite</strong> (Mg₂SiO₄) — pure Magnesium olivine<br>
+    <strong>Fayalite</strong> (Fe₂SiO₄) — pure Iron olivine</p>
+    <p>Magnesium (Mg²⁺) and Iron (Fe²⁺) are almost identical in ionic radius and carry the same 2+ charge. This means they can freely substitute for each other in the olivine crystal lattice. The result is that naturally occurring olivine is almost never pure Forsterite or pure Fayalite — it is always a mixture somewhere along the spectrum between the two.</p>
+    <p>The same principle applies to the plagioclase feldspar series (Calcium ↔ Sodium end-members) and many other mineral families.</p>
+  <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgQGgvJD5zsd8sZ3TFmvzkyPTi_ZQ_O9b69L3DM51ASP3qTHn_43mBwMQrRfReR8itcOuc0WsIWVIS1mNI3Whby7JJY6J9v-lyhznY5jGnGNl4ETrgjt5WK3Ngz-lkH_6znw81yAAUbvnNYeM3md4w59UL5JfpXTSy6tHNCMCCaKQrGTByVzkckrdUmHqk/w640-h376-rw/olivine-varieties-.webp" style="max-width:100%; height:auto;" />
+<img src="https://i.ibb.co.com/JjMvHKvz/Screenshot-2026-05-23-114945.png" style="max-width:100%; height:auto;" />
+</div>
+
+  <div class="callout callout-exam">
+    <div class="callout-title">Why This Matters for Seismology</div>
+    <p>The composition of olivine (the Mg:Fe ratio) affects its density and therefore the speed at which seismic waves travel through it. This is why understanding mineral chemistry is not separate from understanding seismology — they are deeply connected. Olivine is also the mineral that undergoes phase changes at 410 km and 520 km depth (covered in Module 4).</p>
+  </div>
+</div>
+
+<!-- ── FOOTER ── -->
+<hr class="section-divider" style="margin-top:3rem;">
+<p style="font-size:13px; color:var(--text-light); text-align:center; padding-bottom:2rem;">
+  Notes compiled from books, lecture slides, and previous camp materials. Every concept is accompanied by its observational evidence — remember: geology is about <em>how we know</em>, not just <em>what we know</em>.earth_intro_neocamp26.html
+Displaying earth_intro_neocamp26.html.
+NEO National Camp 2026
+Upcoming
+Woohoo, no work due in soon!
+</p>
+
+</main>
+</div>
+</body>
+</html>
+earth_intro_neocamp26.html
+Displaying earth_intro_neocamp26.html.
+NEO National Camp 2026
+Upcoming
+Woohoo, no work due in soon!

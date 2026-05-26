@@ -1,0 +1,1419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Sedimentary Environments — </title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Source+Sans+3:wght@300;400;500;600&display=swap');
+
+  :root {
+    --bg: #faf9f6;
+    --surface: #ffffff;
+    --surface2: #f2f0ec;
+    --border: #e0dcd4;
+    --text: #1a1916;
+    --text-muted: #6b6760;
+    --text-light: #9b9894;
+    --accent: #1d5c4a;
+    --accent-light: #e6f2ee;
+    --accent-mid: #2d7a60;
+    --highlight: #8b4513;
+    --highlight-light: #fdf2ea;
+    --info: #1a3d6b;
+    --info-light: #e8f0fa;
+    --warning: #6b4d00;
+    --warning-light: #fff8e6;
+    --evidence: #4a1d6b;
+    --evidence-light: #f3eefa;
+    --diagram: #0f4a5e;
+    --diagram-light: #e6f4f8;
+    --sidebar-w: 250px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Source Sans 3', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 16px;
+    line-height: 1.75;
+  }
+
+  .layout { display: flex; min-height: 100vh; }
+
+  /* ── SIDEBAR ── */
+  nav {
+    width: var(--sidebar-w);
+    flex-shrink: 0;
+    background: var(--text);
+    color: #e8e6e0;
+    padding: 2rem 0;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+    font-size: 13px;
+  }
+  nav .nav-title {
+    font-family: 'Lora', serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: #fff;
+    padding: 0 1.25rem 1rem;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    margin-bottom: 0.75rem;
+    letter-spacing: 0.01em;
+    line-height: 1.4;
+  }
+  nav a {
+    display: block;
+    padding: 0.3rem 1.25rem;
+    color: #b0aca4;
+    text-decoration: none;
+    transition: color 0.15s, background 0.15s;
+    border-left: 2px solid transparent;
+    line-height: 1.4;
+  }
+  nav a:hover { color: #fff; background: rgba(255,255,255,0.06); }
+  nav .nav-section { font-weight: 600; color: #d4d0c8; margin-top: 0.75rem; border-left: 2px solid #4ade80; padding-left: 1.125rem; }
+  nav .nav-sub { padding-left: 2rem; font-size: 12px; color: #8a8680; }
+
+  /* ── MAIN ── */
+  main {
+    flex: 1;
+    max-width: 840px;
+    padding: 3rem 2.5rem;
+    min-width: 0;
+  }
+
+  /* ── PAGE HEADER ── */
+  .page-header {
+    border-bottom: 2px solid var(--border);
+    padding-bottom: 2rem;
+    margin-bottom: 3rem;
+  }
+  .page-header .course-tag {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent-mid);
+    margin-bottom: 0.5rem;
+  }
+  .page-header h1 {
+    font-family: 'Lora', serif;
+    font-size: 2.3rem;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.25;
+    margin-bottom: 0.75rem;
+  }
+  .page-header .subtitle {
+    color: var(--text-muted);
+    font-size: 15px;
+    font-style: italic;
+  }
+
+  /* ── MODULES ── */
+  .module {
+    margin-bottom: 4rem;
+    scroll-margin-top: 2rem;
+  }
+  .module-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent-mid);
+    margin-bottom: 0.4rem;
+  }
+  h2 {
+    font-family: 'Lora', serif;
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.3;
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1.5px solid var(--border);
+  }
+  h3 {
+    font-family: 'Lora', serif;
+    font-size: 1.12rem;
+    font-weight: 600;
+    color: var(--text);
+    margin: 1.75rem 0 0.6rem;
+  }
+  h4 {
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin: 1.25rem 0 0.4rem;
+  }
+  p { margin-bottom: 1rem; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── CALLOUTS ── */
+  .callout {
+    border-radius: 6px;
+    padding: 1rem 1.25rem;
+    margin: 1.25rem 0;
+    border-left: 3px solid;
+  }
+  .callout p { margin-bottom: 0.5rem; }
+  .callout p:last-child { margin-bottom: 0; }
+  .callout-title {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 0.4rem;
+  }
+  .callout-concept { background: var(--info-light); border-color: #378add; color: var(--info); }
+  .callout-concept .callout-title { color: #185fa5; }
+  .callout-evidence { background: var(--evidence-light); border-color: #9d5cd4; color: var(--evidence); }
+  .callout-evidence .callout-title { color: #6b2fa0; }
+  .callout-diagram { background: var(--diagram-light); border-color: #1d9e75; color: var(--diagram); }
+  .callout-diagram .callout-title { color: #0f6e56; }
+  .callout-exam { background: var(--highlight-light); border-color: #d85a30; color: var(--highlight); }
+  .callout-exam .callout-title { color: #993c1d; }
+  .callout-warning { background: var(--warning-light); border-color: #ef9f27; color: var(--warning); }
+  .callout-warning .callout-title { color: #854f0b; }
+
+  /* ── TABLE ── */
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    margin: 1.25rem 0;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .data-table th {
+    background: var(--surface2);
+    font-weight: 600;
+    padding: 0.6rem 0.8rem;
+    text-align: left;
+    border-bottom: 1.5px solid var(--border);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+  }
+  .data-table td {
+    padding: 0.55rem 0.8rem;
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+    vertical-align: top;
+  }
+  .data-table tr:last-child td { border-bottom: none; }
+  .data-table tr:nth-child(even) td { background: #faf9f6; }
+
+  /* ── STEP LIST ── */
+  .step-list { margin: 1rem 0; }
+  .step-item {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    align-items: flex-start;
+  }
+  .step-num {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: white;
+    font-size: 13px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .step-content { flex: 1; }
+  .step-content strong { font-weight: 600; }
+
+  /* ── SECTION DIVIDER ── */
+  .section-divider {
+    border: none;
+    border-top: 1.5px solid var(--border);
+    margin: 2.5rem 0;
+  }
+
+  /* ── INLINE TERM ── */
+  .term { font-style: italic; font-weight: 600; color: var(--accent-mid); }
+  .key { background: var(--accent-light); padding: 1px 5px; border-radius: 3px; font-weight: 600; font-size: 0.95em; color: var(--accent); }
+
+  /* ── COMPARE GRID ── */
+  .compare-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin: 1.25rem 0;
+  }
+  .compare-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem;
+    font-size: 14px;
+  }
+  .compare-card h4 { margin-top: 0; }
+  .compare-card ul { padding-left: 1.1rem; color: var(--text-muted); }
+  .compare-card ul li { margin-bottom: 0.3rem; }
+
+  /* ── DIAGRAM WRAPPER ── */
+  .diagram-wrap {
+    margin: 1.5rem 0;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem;
+    overflow-x: auto;
+  }
+  .diagram-wrap figcaption {
+    font-size: 12px;
+    color: var(--text-light);
+    margin-top: 0.5rem;
+    text-align: center;
+    font-style: italic;
+  }
+
+  /* ── TERM GLOSSARY ── */
+  .term-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    margin: 1rem 0;
+  }
+  .term-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 0.75rem 0.9rem;
+    font-size: 14px;
+  }
+  .term-card strong { color: var(--accent); font-size: 13px; display: block; margin-bottom: 0.2rem; }
+
+  /* ── PHASE CHAIN ── */
+  .phase-chain {
+    display: flex;
+    align-items: stretch;
+    margin: 1.25rem 0;
+    overflow-x: auto;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .phase-node {
+    flex: 1;
+    min-width: 90px;
+    background: var(--surface);
+    padding: 0.75rem 0.5rem;
+    text-align: center;
+    font-size: 13px;
+    border-right: 1px solid var(--border);
+  }
+  .phase-node:last-child { border-right: none; }
+  .phase-node .pn-label { font-weight: 600; font-size: 12px; color: var(--text); }
+  .phase-node .pn-sub { font-size: 11px; color: var(--text-muted); font-style: italic; margin-top: 2px; }
+  .phase-node .pn-val { font-size: 17px; font-weight: 300; font-family: 'Lora', serif; color: var(--accent-mid); margin: 2px 0; }
+  .phase-node.active { background: var(--accent-light); }
+
+  @media print {
+    nav { display: none; }
+    .layout { display: block; }
+    main { max-width: 100%; padding: 1rem; }
+  }
+</style>
+</head>
+<body>
+<div class="layout">
+
+<!-- ══ SIDEBAR ══ -->
+<nav>
+  <div class="nav-title">Sedimentary Environments &amp; Sea-Level Dynamics</div>
+
+  <a href="#intro" class="nav-section">Overview</a>
+
+  <a href="#u1" class="nav-section">Unit 1 — Terrestrial</a>
+  <a href="#alluvial" class="nav-sub">Alluvial Fan</a>
+  <a href="#braided" class="nav-sub">Braided River</a>
+  <a href="#meandering" class="nav-sub">Meandering River</a>
+  <a href="#eolian" class="nav-sub">Eolian (Desert)</a>
+  <a href="#u1-summary" class="nav-sub">Unit 1 Summary</a>
+
+  <a href="#u2" class="nav-section">Unit 2 — Clastic Marine</a>
+  <a href="#marine-intro" class="nav-sub">Marine Forces</a>
+  <a href="#inner-shelf" class="nav-sub">Inner Shelf</a>
+  <a href="#mid-shelf" class="nav-sub">Mid/Outer Shelf</a>
+  <a href="#turbidites" class="nav-sub">Turbidites</a>
+  <a href="#u2-summary" class="nav-sub">Unit 2 Summary</a>
+
+  <a href="#u3" class="nav-section">Unit 3 — Carbonate &amp; Deep</a>
+  <a href="#carb-chem" class="nav-sub">Carbonate Chemistry</a>
+  <a href="#acidification" class="nav-sub">Ocean Acidification</a>
+  <a href="#carb-envs" class="nav-sub">Carbonate Environments</a>
+  <a href="#deep-sea" class="nav-sub">Deep Sea Sediments</a>
+
+  <a href="#u4" class="nav-section">Unit 4 — Sea Level</a>
+  <a href="#modern-slr" class="nav-sub">Modern Sea-Level Rise</a>
+  <a href="#walther" class="nav-sub">Walther's Law</a>
+  <a href="#transgression" class="nav-sub">Transgression &amp; Regression</a>
+  <a href="#future-slr" class="nav-sub">Future Projections</a>
+
+  <a href="#glossary" class="nav-section">Master Glossary</a>
+</nav>
+
+<!-- ══ MAIN ══ -->
+<main>
+
+<div class="page-header">
+  <div class="course-tag">Geology · Lectures 7–10</div>
+  <h1>Sedimentary Environments &amp; Sea-Level Dynamics</h1>
+  <p class="subtitle"> Lecture notes. Farhana Rifat Sachi.</p>
+</div>
+
+<!-- ══════════ INTRO ══════════ -->
+<div class="module" id="intro">
+  <div class="module-label">The Big Picture</div>
+  <h2>The Story These Lectures Tell</h2>
+
+  <p>Rocks do not form randomly. Every grain of sand, every fossil, every layer of mud records the specific environment in which it was deposited — its energy, its chemistry, its distance from the sea. Geologists have learned to read this record like a language.</p>
+
+  <p>These notes follow sediment on its full journey: from mountain ranges, through rivers and deserts, across beaches and shallow seas, down into the deep ocean — and finally, how that entire geography shifts when sea level rises or falls.</p>
+
+  <div class="callout callout-evidence">
+    <div class="callout-title">Core Skill of These Lectures</div>
+    <p>Understanding <em>why</em> sediment looks the way it does in each environment — not just <em>that</em> it looks a certain way — is what these lectures teach. The reasoning chain matters more than the memorized fact.</p>
+  </div>
+
+
+  <!-- Journey diagram -->
+  <div class="diagram-wrap">
+    <svg viewBox="0 0 760 90" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+      <defs>
+        <marker id="arr" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+          <path d="M0,0 L0,6 L8,3 z" fill="#2d7a60"/>
+        </marker>
+      </defs>
+      <!-- boxes -->
+      <g font-family="Source Sans 3, sans-serif" font-size="12" fill="#1a1916">
+        <rect x="4" y="20" width="88" height="50" rx="5" fill="#e6f4f8" stroke="#1d9e75" stroke-width="1.2"/>
+        <text x="48" y="43" text-anchor="middle" font-weight="600" fill="#0f4a5e">Mountain /</text>
+        <text x="48" y="58" text-anchor="middle" fill="#0f4a5e">Alluvial Fan</text>
+
+        <rect x="118" y="20" width="80" height="50" rx="5" fill="#e6f4f8" stroke="#1d9e75" stroke-width="1.2"/>
+        <text x="158" y="43" text-anchor="middle" font-weight="600" fill="#0f4a5e">Braided</text>
+        <text x="158" y="58" text-anchor="middle" fill="#0f4a5e">River</text>
+
+        <rect x="224" y="20" width="96" height="50" rx="5" fill="#e6f4f8" stroke="#1d9e75" stroke-width="1.2"/>
+        <text x="272" y="43" text-anchor="middle" font-weight="600" fill="#0f4a5e">Meandering</text>
+        <text x="272" y="58" text-anchor="middle" fill="#0f4a5e">River</text>
+
+        <rect x="346" y="20" width="80" height="50" rx="5" fill="#e6f4f8" stroke="#1d9e75" stroke-width="1.2"/>
+        <text x="386" y="43" text-anchor="middle" font-weight="600" fill="#0f4a5e">Beach /</text>
+        <text x="386" y="58" text-anchor="middle" fill="#0f4a5e">Coast</text>
+
+        <rect x="452" y="20" width="80" height="50" rx="5" fill="#e8f0fa" stroke="#378add" stroke-width="1.2"/>
+        <text x="492" y="43" text-anchor="middle" font-weight="600" fill="#1a3d6b">Shallow</text>
+        <text x="492" y="58" text-anchor="middle" fill="#1a3d6b">Shelf</text>
+
+        <rect x="558" y="20" width="80" height="50" rx="5" fill="#e8f0fa" stroke="#378add" stroke-width="1.2"/>
+        <text x="598" y="43" text-anchor="middle" font-weight="600" fill="#1a3d6b">Deep</text>
+        <text x="598" y="58" text-anchor="middle" fill="#1a3d6b">Ocean</text>
+
+        <rect x="664" y="20" width="88" height="50" rx="5" fill="#f3eefa" stroke="#9d5cd4" stroke-width="1.2"/>
+        <text x="708" y="43" text-anchor="middle" font-weight="600" fill="#4a1d6b">Sea Level</text>
+        <text x="708" y="58" text-anchor="middle" fill="#4a1d6b">Controls All</text>
+      </g>
+      <!-- arrows -->
+      <line x1="93" y1="45" x2="116" y2="45" stroke="#2d7a60" stroke-width="1.5" marker-end="url(#arr)"/>
+      <line x1="199" y1="45" x2="222" y2="45" stroke="#2d7a60" stroke-width="1.5" marker-end="url(#arr)"/>
+      <line x1="321" y1="45" x2="344" y2="45" stroke="#2d7a60" stroke-width="1.5" marker-end="url(#arr)"/>
+      <line x1="427" y1="45" x2="450" y2="45" stroke="#2d7a60" stroke-width="1.5" marker-end="url(#arr)"/>
+      <line x1="533" y1="45" x2="556" y2="45" stroke="#378add" stroke-width="1.5" marker-end="url(#arr)"/>
+      <line x1="639" y1="45" x2="662" y2="45" stroke="#9d5cd4" stroke-width="1.5" marker-end="url(#arr)"/>
+    </svg>
+    <figcaption>The sediment journey — from mountain source to deep ocean, governed by sea level</figcaption>
+  </div>
+</div>
+
+<!-- ══════════ UNIT 1 ══════════ -->
+<div class="module" id="u1">
+  <div class="module-label">Unit 1</div>
+  <h2>Nonmarine (Terrestrial) Depositional Environments</h2>
+  <p>All clastic (grain-based) sediment found in the ocean was originally produced on land through <span class="term">weathering</span> — the physical and chemical breakdown of rock at the Earth's surface. To understand marine sediments, you must first understand where they came from.</p>
+</div>
+
+<!-- ── ALLUVIAL FAN ── -->
+<div class="module" id="alluvial">
+  <div class="module-label">Concept 1</div>
+  <h2>Alluvial Fan Depositional Environments</h2>
+
+  <h3>1 · Observation Phase</h3>
+  <p>At the base of steep mountain ranges — the Himalayas, the Rockies, the Sierra Nevada — where mountains suddenly flatten into a broad valley, geologists consistently find a fan-shaped body of sediment spreading from a single canyon mouth. Sampling reveals a systematic pattern:</p>
+
+  <!-- Alluvial fan SVG diagram -->
+  <div class="diagram-wrap">
+  	<img src=<div class="diagram-wrap">
+  <img src="https://thumbs.dreamstime.com/b/alluvial-fan-formation-mountain-river-water-land-outline-diagram-alluvial-fan-formation-mountain-river-water-236886896.jpg" 
+       alt="Scientific cross-section of an alluvial fan and depositional zones" 
+       style="display: block; width: 100%; max-width: 750px; height: auto; margin: 0 auto; border-radius: 6px; box-shadow: 0 4px 12px rgba(0,0,0,0.08);">
+         <figcaption>Cross-section of an alluvial fan — grain size decreases systematically from apex to toe as flow velocity drops</figcaption>
+</div> 
+    
+  <h3>2 · Connection Phase</h3>
+  <p>This spatial pattern — coarsest sediment at the top, finest at the bottom — directly reflects how fast water was moving at each location. When a flash flood exits a steep mountain canyon, it carries enormous energy. The moment it hits the flat valley floor, the slope drops suddenly, the water slows, and it immediately begins dropping its load — heaviest first.</p>
+
+  <h3>3–4 · Reasoning Chain</h3>
+  <div class="step-list">
+    <div class="step-item">
+      <div class="step-num">A</div>
+      <div class="step-content"><strong>Why is the apex sediment unsorted?</strong> The flow near the apex is a <span class="term">debris flow</span> — a dense slurry of water, mud, and rocks moving as a single viscous mass. Large boulders are buoyed up within it. Everything drops at once when the flow stops.</div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">B</div>
+      <div class="step-content"><strong>Why does sorting improve downfan?</strong> The debris flow thins and loses viscosity, transforming into normal water-dominated flow. Hydraulic sorting now operates: heavier particles drop first; lighter ones travel farther.</div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">C</div>
+      <div class="step-content"><strong>Why does imbrication point upstream?</strong> Flat pebbles orient themselves with their flat faces angled into the flow (like a fish facing upstream), offering least resistance. When flow stops, they freeze in this position. Geologists use this as a <span class="term">paleocurrent indicator</span>.</div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">D</div>
+      <div class="step-content"><strong>Why does a playa lake form at the toe?</strong> In arid basins there is nowhere for water to drain. Water pools, evaporates in desert heat, and leaves behind fine clay, dissolved salts, and — when the lake dries — polygonal <span class="term">desiccation cracks</span> preserved in the rock record.</div>
+    </div>
+  </div>
+
+  <div class="callout callout-concept">
+    <div class="callout-title">Final Theory — Alluvial Fan</div>
+    <p>A fan-shaped body of clastic sediment deposited where high-energy flow exits a confined canyon onto open flat terrain, characterized by proximal-to-distal grain-size decrease (gravel → sand → silt/clay), debris flow deposits at the apex, imbricated gravels in mid-fan positions, and fine-grained playa deposits at the toe.</p>
+  </div>
+
+  <div class="callout callout-exam">
+    <div class="callout-title">Key Terms — Alluvial Fan</div>
+    <p><strong>Debris flow:</strong> High-density slurry of water, rock, and mud moving as a cohesive mass under gravity. · <strong>Clast imbrication:</strong> Upstream-tilting orientation of flat clasts — a paleocurrent indicator. · <strong>Playa lake:</strong> Temporary, highly evaporative saline lake in an undrained arid basin. · <strong>Desiccation cracks:</strong> Polygonal shrinkage cracks formed by drying mud; sign of alternating wet-dry conditions.</p>
+  </div>
+</div>
+
+<!-- ── BRAIDED RIVER ── -->
+<div class="module" id="braided">
+  <div class="module-label">Concept 2</div>
+  <h2>Braided River Depositional Environments</h2>
+
+  <h3>1 · Observation Phase</h3>
+  <p>In regions of moderate-to-steep slope — outwash plains in front of glaciers, sediment-choked valleys in tectonically active mountain ranges — rivers display dozens of shallow, interwoven channels separated by low sand and gravel bars. These are <span class="term">braided rivers</span>. In outcrop, their ancient deposits show:</p>
+
+  <div class="callout callout-evidence">
+    <div class="callout-title">Field Evidence for Braided Rivers</div>
+    <p>Very high sand-to-mud ratio (mudstone nearly absent) · Abundant cross-stratification recording bar migration · Imbricated pebble conglomerates · Erosive, scoured basal contacts where each new channel cut into the previous one · Plant fossils (terrestrial setting) · No marine fossils</p>
+  </div>
+
+  <h3>2–4 · Reasoning Chain</h3>
+  <div class="step-list">
+    <div class="step-item">
+      <div class="step-num">A</div>
+      <div class="step-content"><strong>Transport mechanics:</strong> High-velocity rivers carry enormous <span class="term">bed loads</span> (coarse grains rolling, sliding, or saltating along the riverbed). When velocity drops even slightly, the bed load drops immediately. The <span class="term">suspended load</span> (fine silt/clay) travels further.</div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">B</div>
+      <div class="step-content"><strong>Why do channels braid?</strong> When a mountain-fed river dumps more sediment than the water can carry, gravel bars grow in mid-channel. Water splits around them, deposits more bars. The river essentially chokes on its own sediment supply.</div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">C</div>
+      <div class="step-content"><strong>Why is there no mud?</strong> Fine clay and silt are re-eroded immediately by the always-active channels. Mud only accumulates in permanent still water — and braided rivers have virtually none. Result: almost pure sand and gravel in the rock record.</div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">D</div>
+      <div class="step-content"><strong>Cross-stratification as a process record:</strong> As bars migrate downstream, sand avalanches down their slipfaces. Each avalanche creates one inclined layer. The steep side (<span class="term">foreset</span>) dips in the flow direction — another paleocurrent indicator.</div>
+    </div>
+  </div>
+
+  <div class="callout callout-concept">
+    <div class="callout-title">Final Theory — Braided River</div>
+    <p>A multi-channel fluvial system with high sediment supply and high discharge variability, dominated by bed load transport, producing cross-bedded coarse sandstone and conglomerate with scoured channel bases and virtually no mudstone interbeds.</p>
+  </div>
+</div>
+
+<!-- ── MEANDERING RIVER ── -->
+<div class="module" id="meandering">
+  <div class="module-label">Concept 3</div>
+  <h2>Meandering River Depositional Environments</h2>
+
+  <h3>1 · Observation Phase — The Fining-Upward Sequence</h3>
+  <p>As rivers travel farther from their mountain sources, the slope decreases and only sand, silt, and clay remain. On a flat plain, the river organizes into a single, highly curved channel — the <span class="term">meandering river</span>. Its ancient deposits show a very specific vertical pattern called a <span class="term">fining-upward sequence</span>:</p>
+
+  <!-- Fining-upward sequence diagram -->
+  <div class="diagram-wrap">
+    <svg viewBox="0 0 680 320" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+      <!-- column -->
+      <rect x="60" y="20" width="80" height="280" fill="#f0ece6" stroke="#c0b8ac" stroke-width="1"/>
+      <!-- layer fills from bottom to top -->
+      <!-- Basal erosion -->
+      <rect x="60" y="270" width="80" height="30" fill="#c8a07a" stroke="#a07040" stroke-width="0.8"/>
+      <!-- Channel lag gravel -->
+      <rect x="60" y="248" width="80" height="22" fill="#b87333" stroke="#8b5e20" stroke-width="0.8"/>
+      <!-- Point bar sand -->
+      <rect x="60" y="190" width="80" height="58" fill="#d4b460" stroke="#a08830" stroke-width="0.8"/>
+      <!-- Levee silt -->
+      <rect x="60" y="158" width="80" height="32" fill="#d4c49a" stroke="#b0a070" stroke-width="0.8"/>
+      <!-- Floodplain mud -->
+      <rect x="60" y="100" width="80" height="58" fill="#c8a888" stroke="#a07855" stroke-width="0.8"/>
+      <!-- Lake mud -->
+      <rect x="60" y="58" width="80" height="42" fill="#8fa8a8" stroke="#607878" stroke-width="0.8"/>
+      <!-- Peat/coal -->
+      <rect x="60" y="20" width="80" height="38" fill="#3a3028" stroke="#1a1008" stroke-width="0.8"/>
+
+      <!-- labels -->
+      <g font-family="Source Sans 3, sans-serif" font-size="12" fill="#1a1916">
+        <line x1="141" y1="280" x2="165" y2="280" stroke="#888" stroke-width="0.8"/>
+        <text x="168" y="284" font-size="11" fill="#7a4a20" font-weight="600">Basal erosional contact</text>
+
+        <line x1="141" y1="259" x2="165" y2="259" stroke="#888" stroke-width="0.8"/>
+        <text x="168" y="263" font-size="11" fill="#8b5e20" font-weight="600">Channel lag gravel</text>
+
+        <line x1="141" y1="220" x2="165" y2="220" stroke="#888" stroke-width="0.8"/>
+        <text x="168" y="224" font-size="11" fill="#7a6020" font-weight="600">Point-bar sandstone</text>
+        <text x="168" y="236" font-size="10" fill="#7a6020">(cross-bedded)</text>
+
+        <line x1="141" y1="174" x2="165" y2="174" stroke="#888" stroke-width="0.8"/>
+        <text x="168" y="178" font-size="11" fill="#857840" font-weight="600">Natural levee siltstone</text>
+
+        <line x1="141" y1="128" x2="165" y2="128" stroke="#888" stroke-width="0.8"/>
+        <text x="168" y="132" font-size="11" fill="#7a5a40" font-weight="600">Floodplain mudstone</text>
+        <text x="168" y="144" font-size="10" fill="#7a5a40">caliche · desiccation cracks</text>
+
+        <line x1="141" y1="79" x2="165" y2="79" stroke="#888" stroke-width="0.8"/>
+        <text x="168" y="83" font-size="11" fill="#406878" font-weight="600">Floodplain lake mudshale</text>
+        <text x="168" y="95" font-size="10" fill="#406878">fish fossils · leaf impressions</text>
+
+        <line x1="141" y1="39" x2="165" y2="39" stroke="#888" stroke-width="0.8"/>
+        <text x="168" y="43" font-size="11" fill="#2a2018" font-weight="600">Swamp peat → coal</text>
+        <text x="168" y="55" font-size="10" fill="#2a2018">(humid tropical settings)</text>
+      </g>
+      <!-- grain size arrow on left -->
+      <line x1="48" y1="290" x2="48" y2="30" stroke="#2d7a60" stroke-width="1.5" marker-end="url(#arr)"/>
+      <text x="10" y="180" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="11" fill="#2d7a60" transform="rotate(-90,10,180)">Fining upward →</text>
+
+      <!-- coarse/fine labels -->
+      <text x="100" y="298" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="10" fill="#7a4a20">COARSE</text>
+      <text x="100" y="16" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="10" fill="#2a2018">FINE</text>
+    </svg>
+    <figcaption>The fining-upward sequence of a meandering river — each layer records a specific depositional location in the river system</figcaption>
+  </div>
+
+  <h3>2 · Connection Phase</h3>
+  <p>Every layer connects to a specific location in the meandering river system. The key insight is that <strong>lateral movement of the channel</strong> (channel migration) stacks these deposits vertically — as the channel shifts sideways over centuries, its fill is preserved beneath the adjacent floodplain sediment.</p>
+
+  <div class="callout callout-concept">
+    <div class="callout-title">Final Theory — Meandering River</div>
+    <p>A single-channel, high-sinuosity river system producing a diagnostic fining-upward sequence from channel-lag gravel through cross-bedded point-bar sand to natural levee silt and floodplain mudstone, with characteristic features including caliche nodules, desiccation cracks, and root traces indicating subaerial exposure.</p>
+  </div>
+
+  <div class="callout callout-exam">
+    <div class="callout-title">Key Terms — Meandering River</div>
+    <p><strong>Fining-upward sequence:</strong> Vertical decrease in grain size within a depositional cycle; diagnostic of meandering river deposits. · <strong>Point bar:</strong> Crescentic sand body on the inner bank of a meander. · <strong>Caliche:</strong> White CaCO₃ nodules in arid soils — definitive evidence of terrestrial conditions. · <strong>Natural levee:</strong> Low bank embankment built by overbank flood deposits. · <strong>Varves:</strong> Annual light+dark couplets in quiet lake mud; each pair = one year. · <strong>Coal:</strong> Carbonaceous rock formed by burial and heating of swamp peat.</p>
+  </div>
+</div>
+
+<!-- ── EOLIAN ── -->
+<div class="module" id="eolian">
+  <div class="module-label">Concept 4</div>
+  <h2>Eolian (Desert / Wind) Depositional Environments</h2>
+
+  <h3>1 · Observation Phase</h3>
+  <p>In arid regions — the Sahara, the Namib, the ancient Jurassic deserts of the Colorado Plateau — wind becomes the dominant transport agent. Ancient eolian deposits in outcrop show three consistent features:</p>
+
+  <div class="compare-grid">
+    <div class="compare-card">
+      <h4>What Geologists See</h4>
+      <ul>
+        <li>Perfectly sorted, well-rounded sand (nearly no mud or gravel)</li>
+        <li>High-angle cross-beds (25–35°) — much steeper than water-laid</li>
+        <li>Frosted grain surfaces (abrasion scars under microscope)</li>
+        <li>No marine or freshwater fossils</li>
+        <li>Evaporite minerals &amp; desiccation cracks in adjacent playa deposits</li>
+      </ul>
+    </div>
+    <div class="compare-card">
+      <h4>Why Each Feature Occurs</h4>
+      <ul>
+        <li>Wind only lifts a narrow grain-size window (saltation) → perfect sorting</li>
+        <li>Dry sand avalanches at full 30–34° angle of repose</li>
+        <li>Repeated grain-to-grain impacts during wind transport → frosted surfaces</li>
+        <li>Arid setting far from sea</li>
+        <li>Enclosed basins with no drainage → evaporating playas</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout callout-concept">
+    <div class="callout-title">Final Theory — Eolian Environment</div>
+    <p>An arid depositional system dominated by wind transport of well-sorted, well-rounded sand, producing large-scale, high-angle cross-bedded sandstone without mud interbeds, often associated with playa lake evaporites in adjacent topographic lows.</p>
+  </div>
+
+  <div class="callout callout-exam">
+    <div class="callout-title">Key Terms — Eolian</div>
+    <p><strong>Angle of repose:</strong> Steepest stable angle for loose dry sand — ~30–34°; water-laid bedforms have lower dip angles. · <strong>Loess:</strong> Wind-deposited silt carried beyond the dune field. · <strong>Evaporite:</strong> Mineral deposit (halite, gypsum) formed by evaporation of saline water. · <strong>Frosted grain surface:</strong> Microscopic abrasion texture on eolian sand grains; diagnostic of wind transport.</p>
+  </div>
+</div>
+
+<!-- ── UNIT 1 SUMMARY ── -->
+<div class="module" id="u1-summary">
+  <h2>Unit 1 Summary — Terrestrial Environments</h2>
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Environment</th>
+        <th>Dominant Process</th>
+        <th>Characteristic Deposit</th>
+        <th>Key Diagnostic Indicators</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Alluvial Fan</strong></td>
+        <td>Debris flows, flash floods</td>
+        <td>Poorly sorted conglomerate</td>
+        <td>No sorting, imbrication, playa evaporites</td>
+      </tr>
+      <tr>
+        <td><strong>Braided River</strong></td>
+        <td>High bed-load stream</td>
+        <td>Cross-bedded coarse sandstone</td>
+        <td>High sand:mud ratio, scoured bases, no mudstone</td>
+      </tr>
+      <tr>
+        <td><strong>Meandering River</strong></td>
+        <td>Lateral channel migration</td>
+        <td>Fining-upward sandstone/mudstone</td>
+        <td>Caliche, desiccation cracks, point-bar geometry</td>
+      </tr>
+      <tr>
+        <td><strong>Floodplain Lake</strong></td>
+        <td>Suspension settling</td>
+        <td>Laminated mudshale</td>
+        <td>Varves, fish fossils, leaf impressions</td>
+      </tr>
+      <tr>
+        <td><strong>Floodplain Swamp</strong></td>
+        <td>Organic accumulation</td>
+        <td>Coal</td>
+        <td>High carbon content, plant fossils</td>
+      </tr>
+      <tr>
+        <td><strong>Eolian</strong></td>
+        <td>Wind saltation</td>
+        <td>Large-scale cross-bedded sandstone</td>
+        <td>High dip angle (~30°), perfect sorting, no mud, frosted grains</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ══════════ UNIT 2 ══════════ -->
+<div class="module" id="u2">
+  <div class="module-label">Unit 2</div>
+  <h2>Clastic Marine Depositional Environments</h2>
+  <p>Once sediment reaches the coast and enters marine water, the physics change dramatically. Three force systems operate simultaneously — waves (oscillatory flow), tides (rhythmic unidirectional flow), and ocean currents — each occupying a specific depth zone and producing distinctive sediment patterns.</p>
+</div>
+
+<div class="module" id="marine-intro">
+  <h2>Marine Currents — The Engines of Coastal Sediment Transport</h2>
+
+  <!-- Continental margin cross-section diagram -->
+  <div class="diagram-wrap">
+    <svg viewBox="0 0 720 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+      <defs>
+        <linearGradient id="seaGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#b8d8e8"/>
+          <stop offset="100%" stop-color="#2a5a7a"/>
+        </linearGradient>
+        <linearGradient id="landGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#d4b896"/>
+          <stop offset="100%" stop-color="#a08060"/>
+        </linearGradient>
+      </defs>
+      <!-- sea -->
+      <rect x="0" y="0" width="720" height="200" fill="url(#seaGrad)"/>
+      <!-- seafloor profile -->
+      <path d="M0,60 L120,60 L180,75 L290,85 L380,105 L480,150 L580,175 L720,185 L720,200 L0,200 Z" fill="url(#landGrad)" stroke="#7a5a30" stroke-width="1"/>
+      <!-- shore/land -->
+      <rect x="0" y="0" width="120" height="200" fill="#c8b088"/>
+      <rect x="0" y="0" width="120" height="60" fill="#d8c098"/>
+      <!-- water surface -->
+      <line x1="120" y1="60" x2="720" y2="60" stroke="#8ab8d8" stroke-width="1.5" stroke-dasharray="8,4"/>
+
+      <!-- depth labels -->
+      <g font-family="Source Sans 3, sans-serif" font-size="11" fill="white">
+        <text x="125" y="73" font-weight="600">Beach</text>
+        <text x="200" y="70">Inner shelf</text>
+        <text x="310" y="75">Middle shelf</text>
+        <text x="410" y="90">Outer shelf</text>
+        <text x="490" y="133">Slope</text>
+        <text x="610" y="165">Abyssal plain</text>
+      </g>
+      <!-- depth indicator lines -->
+      <g stroke="white" stroke-width="0.8" stroke-dasharray="3,3" opacity="0.5">
+        <line x1="255" y1="60" x2="255" y2="82"/>
+        <text x="258" y="78" font-family="Source Sans 3, sans-serif" font-size="10" fill="white">FWWB ~10m</text>
+        <line x1="360" y1="60" x2="360" y2="102"/>
+        <text x="363" y="98" font-family="Source Sans 3, sans-serif" font-size="10" fill="white">SWB ~50m</text>
+        <line x1="470" y1="60" x2="470" y2="148"/>
+        <text x="473" y="144" font-family="Source Sans 3, sans-serif" font-size="10" fill="white">~200m shelf edge</text>
+      </g>
+      <text x="60" y="40" font-family="Source Sans 3, sans-serif" font-size="12" fill="#5a4020" font-weight="600" text-anchor="middle">LAND</text>
+    </svg>
+    <figcaption>Cross-section of a passive continental margin — FWWB = fair-weather wave base; SWB = storm wave base</figcaption>
+  </div>
+
+  <h3>The Three Marine Forces</h3>
+  <div class="step-list">
+    <div class="step-item">
+      <div class="step-num">1</div>
+      <div class="step-content"><strong>Tidal currents</strong> — rhythmic, twice-daily unidirectional flows switching between flood (landward) and ebb (seaward), with a brief period of zero velocity (<span class="term">slack water</span>) when very fine sediment settles. Tidal deposits show <span class="term">herringbone cross-stratification</span> (cross-beds dipping in opposite directions) and thin mud drapes.</div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">2</div>
+      <div class="step-content"><strong>Waves (oscillatory flow)</strong> — circular orbital motion decreasing with depth. Below <span class="term">fair-weather wave base</span> (~5–15 m), everyday waves cannot stir sediment. Below <span class="term">storm wave base</span> (~15–50 m), even major storms cannot reach. Wave motion creates <em>symmetrical ripples</em> (equal crests on both sides), distinguishing wave action from unidirectional currents (asymmetrical ripples).</div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">3</div>
+      <div class="step-content"><strong>Longshore currents</strong> — generated when waves approach the coast at an angle, creating a current flowing parallel to the beach. This drags sand along the coast (<span class="term">longshore drift</span>), building spits and barrier beaches, and can starve beaches of sand if blocked by jetties.</div>
+    </div>
+  </div>
+
+  <div class="callout callout-exam">
+    <div class="callout-title">Diagnostic Summary — Wave vs. Tidal Ripples</div>
+    <p><strong>Symmetrical ripples</strong> = oscillatory wave action. <strong>Asymmetrical ripples</strong> = unidirectional current. This single observation tells geologists the dominant process even in rocks millions of years old.</p>
+  </div>
+</div>
+
+<!-- ── INNER SHELF ── -->
+<div class="module" id="inner-shelf">
+  <div class="module-label">Concept 7</div>
+  <h2>Inner Clastic Shelf — Beaches, Tidal Flats, and Marshes</h2>
+
+  <h3>Beaches</h3>
+  <p>The constant wave agitation of a beach is an extremely effective sorting machine. Ancient beach deposits show <strong>well-sorted, well-rounded quartz arenite</strong> with subhorizontal planar lamination (swash/backwash), seaward-dipping cross-beds, and characteristic vertical burrows — <span class="term">Skolithos</span> — made by suspension-feeding worms seeking stable ground in wave-agitated sand.</p>
+
+  <h3>Tidal Flats</h3>
+  <p>Where tidal range exceeds ~2 meters, broad muddy areas are exposed at low tide and submerged at high tide. Tidal flat deposits show alternating sand layers (active tidal current) and mud drapes (slack water), with the diagnostic <span class="term">herringbone cross-stratification</span> recording alternating ebb and flood tides.</p>
+
+  <div class="callout callout-concept">
+    <div class="callout-title">Final Concept — Inner Shelf</div>
+    <p>Inner clastic shelf environments (beach, tidal flat, marsh) are defined by high wave energy, strong tidal influence, and proximity to sea level, producing well-sorted sandstone with vertical <em>Skolithos</em> burrows (beach), herringbone cross-stratification (tidal flat), and organic-rich mudstone (marsh).</p>
+  </div>
+</div>
+
+<!-- ── MID SHELF ── -->
+<div class="module" id="mid-shelf">
+  <div class="module-label">Concept 8</div>
+  <h2>Middle and Outer Shelf — Tempestites and Normal Marine Muds</h2>
+
+  <p>Below fair-weather wave base, the seafloor is quiet. Sediment settles gently from suspension, building dark fine-grained <strong>mudrock</strong>. But this quiet record is interrupted by distinctive isolated sand layers — <span class="term">tempestites</span> — deposited during major storms:</p>
+
+  <div class="phase-chain">
+    <div class="phase-node active">
+      <div class="pn-label">Sharp Base</div>
+      <div class="pn-sub">Seafloor scoured</div>
+      <div class="pn-val">↑</div>
+    </div>
+    <div class="phase-node">
+      <div class="pn-label">Coarse Sand</div>
+      <div class="pn-sub">Storm arrival</div>
+      <div class="pn-val">↑</div>
+    </div>
+    <div class="phase-node">
+      <div class="pn-label">HCS</div>
+      <div class="pn-sub">Combined flow</div>
+      <div class="pn-val">↑</div>
+    </div>
+    <div class="phase-node">
+      <div class="pn-label">Normal Grade</div>
+      <div class="pn-sub">Waning storm</div>
+      <div class="pn-val">↑</div>
+    </div>
+    <div class="phase-node">
+      <div class="pn-label">Mud Cap</div>
+      <div class="pn-sub">Fairweather return</div>
+      <div class="pn-val">↑</div>
+    </div>
+  </div>
+
+  <div class="callout callout-diagram">
+    <div class="callout-title">Hummocky Cross-Stratification (HCS) — Key Diagnostic</div>
+    <p><span class="term">HCS</span> is a mound-and-hollow bedform structure created only by <span class="term">combined flow</span> — simultaneous oscillatory (wave) + unidirectional (storm current) water motion. It is impossible to produce with either force alone. Finding HCS in ancient mudrock is definitive proof of below-storm-wave-base conditions.</p>
+  </div>
+
+  <div class="callout callout-exam">
+    <div class="callout-title">Key Terms — Mid-Shelf</div>
+    <p><strong>Tempestite:</strong> A storm-deposited sand layer within deep-shelf mudrock; sharp erosional base, HCS, normal grading, mud cap. · <strong>HCS (Hummocky cross-stratification):</strong> Undulating internal layering produced by storm combined flow; diagnostic of below-storm-wave-base conditions. · <strong>Normal grading:</strong> Upward decrease in grain size within a single layer; records decreasing flow energy.</p>
+  </div>
+</div>
+
+<!-- ── TURBIDITES ── -->
+<div class="module" id="turbidites">
+  <div class="module-label">Concept 9</div>
+  <h2>The Continental Slope — Turbidity Currents and the Bouma Sequence</h2>
+
+  <h3>1 · Observation Phase — The Bouma Sequence</h3>
+  <p>In rocks formed in ancient deep water, geologists find a sedimentary package so distinctive it has its own name — the <span class="term">Bouma sequence</span> (named after Arnold Bouma). These beds are called <span class="term">turbidites</span>.</p>
+
+  <!-- Bouma sequence diagram -->
+  <div class="diagram-wrap">
+    <svg viewBox="0 0 680 290" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+      <!-- column -->
+      <rect x="80" y="20" width="70" height="260" fill="#f0ece6" stroke="#c0b8ac" stroke-width="1"/>
+      <!-- Ta - massive coarse sand -->
+      <rect x="80" y="195" width="70" height="85" fill="#c8a07a" stroke="#9a7840" stroke-width="0.8"/>
+      <!-- Tb - planar laminated -->
+      <rect x="80" y="155" width="70" height="40" fill="#d4b460" stroke="#a08830" stroke-width="0.8"/>
+      <!-- Tc - ripple cross-lam -->
+      <rect x="80" y="118" width="70" height="37" fill="#d4c49a" stroke="#b0a070" stroke-width="0.8"/>
+      <!-- Td - laminated silt -->
+      <rect x="80" y="82" width="70" height="36" fill="#c8d4d8" stroke="#8ab0b8" stroke-width="0.8"/>
+      <!-- Te - hemipelagic mud -->
+      <rect x="80" y="20" width="70" height="62" fill="#8898a8" stroke="#607080" stroke-width="0.8"/>
+      <!-- erosional base marks -->
+      <path d="M80,280 Q90,283 100,280 Q110,277 120,280 Q130,283 140,280 Q150,277 150,280" fill="none" stroke="#7a4020" stroke-width="1.5"/>
+
+      <!-- labels -->
+      <g font-family="Source Sans 3, sans-serif" font-size="12" fill="#1a1916">
+        <text x="156" y="285" fill="#8b4513" font-weight="600">Erosional base</text>
+
+        <text x="156" y="245" fill="#7a4a20" font-weight="700">Ta</text>
+        <text x="176" y="245" fill="#7a4a20" font-weight="600">Massive/graded coarse sand</text>
+        <text x="156" y="257" fill="#9a6a40" font-size="11">Turbidity current arrives; rapid deposition</text>
+
+        <text x="156" y="182" fill="#7a6020" font-weight="700">Tb</text>
+        <text x="176" y="182" fill="#7a6020" font-weight="600">Planar laminated sand</text>
+        <text x="156" y="194" fill="#9a8040" font-size="11">Traction carpet; high shear flow</text>
+
+        <text x="156" y="143" fill="#857840" font-weight="700">Tc</text>
+        <text x="176" y="143" fill="#857840" font-weight="600">Ripple cross-laminated sand</text>
+        <text x="156" y="155" fill="#a09050" font-size="11">Lower-flow regime; ripples form</text>
+
+        <text x="156" y="106" fill="#406878" font-weight="700">Td</text>
+        <text x="176" y="106" fill="#406878" font-weight="600">Laminated fine silt/clay</text>
+        <text x="156" y="118" fill="#607898" font-size="11">Current waning; fine settling</text>
+
+        <text x="156" y="62" fill="#304050" font-weight="700">Te</text>
+        <text x="176" y="62" fill="#304050" font-weight="600">Hemipelagic mud cap</text>
+        <text x="156" y="74" fill="#506070" font-size="11">Background deep-sea settling (weeks–years)</text>
+      </g>
+
+      <!-- energy arrow -->
+      <line x1="68" y1="270" x2="68" y2="30" stroke="#d85a30" stroke-width="1.5" marker-end="url(#arr)"/>
+      <text x="32" y="160" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="11" fill="#d85a30" transform="rotate(-90,32,160)">Decreasing energy →</text>
+    </svg>
+    <figcaption>The Bouma sequence — each division records a specific phase of decreasing flow velocity during a single turbidity current event</figcaption>
+  </div>
+
+  <h3>2–4 · Reasoning Chain — What is a Turbidity Current?</h3>
+  <div class="step-list">
+    <div class="step-item">
+      <div class="step-num">A</div>
+      <div class="step-content"><strong>How does coarse sand get to the deep ocean?</strong> A <span class="term">turbidity current</span> — a submarine avalanche of sediment-laden water — is denser than the surrounding clear seawater and therefore flows downslope under gravity, carrying sand from the shallow shelf down the steep continental slope to the abyssal plain.</div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">B</div>
+      <div class="step-content"><strong>What triggers one?</strong> Earthquake shaking destabilizes shelf-edge sediment, storm waves deliver too much sand to the shelf edge, or rapid river flooding piles sediment at the delta front. Once triggered, the dense slurry accelerates down the slope.</div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">C</div>
+      <div class="step-content"><strong>Why can they travel so far?</strong> The density contrast between the turbid current and clear seawater maintains acceleration on the 3–8° continental slope. Turbidity currents have been measured traveling at over 25 km/h, carrying sediment hundreds of kilometers to the abyssal plain.</div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">D</div>
+      <div class="step-content"><strong>Laboratory proof:</strong> Turbidity currents have been directly observed in flume tanks. A dense sediment slurry released at one end flows along the bottom exactly as predicted, depositing a graded layer matching the Bouma sequence.</div>
+    </div>
+  </div>
+
+  <div class="callout callout-concept">
+    <div class="callout-title">Final Concept — Turbidite</div>
+    <p>A graded sedimentary bed deposited by a turbidity current on the continental slope or abyssal plain, displaying the characteristic Bouma sequence (Ta–Te) from sharp erosional base through graded sand to hemipelagic mud cap.</p>
+  </div>
+</div>
+
+<!-- ── UNIT 2 SUMMARY ── -->
+<div class="module" id="u2-summary">
+  <h2>Unit 2 Summary — Clastic Marine Environments</h2>
+  <table class="data-table">
+    <thead>
+      <tr><th>Environment</th><th>Depth Zone</th><th>Dominant Process</th><th>Key Rock / Structure</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Beach</strong></td>
+        <td>Above FWWB</td>
+        <td>Waves + swash</td>
+        <td>Well-sorted quartz arenite, <em>Skolithos</em>, planar lamination</td>
+      </tr>
+      <tr>
+        <td><strong>Tidal flat</strong></td>
+        <td>Intertidal</td>
+        <td>Tidal currents</td>
+        <td>Herringbone XS, mud drapes, flaser bedding</td>
+      </tr>
+      <tr>
+        <td><strong>Marsh</strong></td>
+        <td>Above MHW</td>
+        <td>Tidal flooding</td>
+        <td>Organic-rich mudstone, root traces</td>
+      </tr>
+      <tr>
+        <td><strong>Middle shelf</strong></td>
+        <td>Below FWWB</td>
+        <td>Fairweather settling + storms</td>
+        <td>Mudrock + tempestites (HCS)</td>
+      </tr>
+      <tr>
+        <td><strong>Outer shelf/slope</strong></td>
+        <td>Below SWB</td>
+        <td>Turbidity currents</td>
+        <td>Bouma-sequence turbidites (Ta–Te)</td>
+      </tr>
+    </tbody>
+  </table>
+  <p style="font-size:13px;color:var(--text-light);margin-top:0.5rem;">FWWB = Fair-weather wave base · SWB = Storm wave base · XS = Cross-stratification · MHW = Mean high water</p>
+</div>
+
+<!-- ══════════ UNIT 3 ══════════ -->
+<div class="module" id="u3">
+  <div class="module-label">Unit 3</div>
+  <h2>Carbonate and Deep Marine Environments</h2>
+  <p>In warm, tropical seas far from significant river input, a completely different type of sediment dominates: calcium carbonate produced biologically by marine organisms. Understanding this requires examining the chemistry of seawater itself.</p>
+</div>
+
+<div class="module" id="carb-chem">
+  <div class="module-label">Concept 10</div>
+  <h2>The Chemistry of Carbonate Deposition</h2>
+
+  <h3>1 · The Core Reaction</h3>
+  <p>If you take limestone (CaCO₃) and expose it to CO₂-rich water, it dissolves:</p>
+
+  <div class="callout callout-diagram">
+    <div class="callout-title">The Key Chemical Equation</div>
+    <p style="font-family:'Lora',serif;font-size:1.1em;text-align:center;margin:0.5rem 0;"><strong>CaCO₃(solid) + CO₂(gas) + H₂O → Ca(HCO₃)₂(dissolved)</strong></p>
+    <p><strong>Implication:</strong> CO₂ in seawater is the enemy of carbonate deposition. More CO₂ = more dissolution. Less CO₂ = more CaCO₃ precipitation. <em>Removing</em> CO₂ from seawater promotes carbonate shell-building.</p>
+  </div>
+
+  <h3>2–4 · Why Carbonates Dominate Tropical Seas</h3>
+  <div class="step-list">
+    <div class="step-item">
+      <div class="step-num">A</div>
+      <div class="step-content"><strong>Temperature controls CO₂ solubility:</strong> At 30°C (tropical), CO₂ solubility is roughly half that at 5°C (polar). Tropical surface water has far less dissolved CO₂ → seawater supersaturated with CaCO₃ → carbonate naturally precipitates.</div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">B</div>
+      <div class="step-content"><strong>Photosynthesis extracts CO₂:</strong> Dense communities of photosynthetic algae and <span class="term">zooxanthellae</span> (symbiotic algae inside coral polyps) consume dissolved CO₂, further lowering its concentration and promoting carbonate precipitation. This is why reefs only exist in the <span class="term">photic zone</span>.</div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">C</div>
+      <div class="step-content"><strong>Waves degas CO₂:</strong> Wave-agitated water constantly exchanges gases with the atmosphere. In warm settings, CO₂ degasses outward (sea to air), further promoting carbonate saturation.</div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">D</div>
+      <div class="step-content"><strong>Turbidity (clarity) matters:</strong> If water is murky with suspended river mud, sunlight cannot penetrate. Without sunlight, photosynthesis stops. Without photosynthesis removing CO₂, carbonate production collapses. This is why coral reefs die near river mouths.</div>
+    </div>
+  </div>
+</div>
+
+<div class="module" id="acidification">
+  <h2>The Modern Crisis — Ocean Acidification</h2>
+
+  <p>The same chemistry that explains where carbonates form also explains a modern environmental crisis. Since the Industrial Revolution, burning fossil fuels has released enormous CO₂ quantities. The ocean absorbs approximately 25–30% of all atmospheric CO₂ — beneficial for reducing atmospheric warming but devastating for carbonate chemistry.</p>
+
+  <div class="callout callout-warning">
+    <div class="callout-title">The Acidification Chain</div>
+    <p>More CO₂ absorbed by ocean → more H₂CO₃ (carbonic acid) forms → pH drops → CaCO₃ saturation decreases → carbonate organisms struggle to build shells.</p>
+    <p style="margin-top:0.5rem;">Atmospheric CO₂ remained below <strong>300 ppm</strong> for at least 800,000 years (ice core records). By 2022 it exceeded <strong>420 ppm</strong> — completely off the historical chart. Under high-emissions scenarios (SSP5-8.5), CO₂ could reach <strong>900 ppm by 2100</strong>.</p>
+  </div>
+
+  <p>At such CO₂ levels, oysters, pteropods ("sea butterflies"), and coral reefs face severe chemical dissolution of their shells even while alive. The geological record would preserve this as an abrupt disappearance of carbonate material — exactly what geologists have documented at past mass extinction boundaries.</p>
+</div>
+
+<div class="module" id="carb-envs">
+  <div class="module-label">Concept 11</div>
+  <h2>Carbonate Depositional Environments</h2>
+
+  <p>A typical warm-water carbonate platform (Bahamas, Belize) has a distinct spatial arrangement from land to open ocean:</p>
+
+  <table class="data-table">
+    <thead>
+      <tr><th>Zone</th><th>Setting</th><th>Sediment Produced</th><th>Rock Type</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Tidal Flats</strong></td>
+        <td>Shallowest, alternately wet/dry</td>
+        <td>Fine carbonate mud (micrite), desiccation cracks, stromatolites</td>
+        <td>Micrite + evaporites</td>
+      </tr>
+      <tr>
+        <td><strong>Lagoon</strong></td>
+        <td>Shallow (1–5 m), low wave energy, behind reef</td>
+        <td>Peloids, ooids, bioclasts; corals, mollusks</td>
+        <td>Packstone / grainstone</td>
+      </tr>
+      <tr>
+        <td><strong>Reef (High-Energy)</strong></td>
+        <td>Maximum wave energy + oxygenation</td>
+        <td>In-situ coral framework + reef rubble</td>
+        <td>Framestone / rudstone</td>
+      </tr>
+      <tr>
+        <td><strong>Fore-Reef Slope</strong></td>
+        <td>Steep seaward slope; debris avalanche</td>
+        <td>Coarse reef rubble → finer with depth</td>
+        <td>Floatstone / turbiditic carbonate</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="callout callout-concept">
+    <div class="callout-title">The Carbonate Factory Principle</div>
+    <p>The reef-lagoon system is called the "Carbonate Factory" because biological productivity in this shallow zone produces far more carbonate than any other. Carbonate is transported both landward (into the lagoon/tidal flats) and seaward (off the fore-reef slope). The spatial belt of environments can be read as a vertical sequence in ancient rocks — the same principle that governs clastic stratigraphy.</p>
+  </div>
+</div>
+
+<div class="module" id="deep-sea">
+  <div class="module-label">Concept 13</div>
+  <h2>Deep Marine Sediments</h2>
+
+  <p>Below the continental slope, in water depths exceeding 3,000–5,000 m, the sediment record reflects global ocean productivity, climate, and plate tectonics. A critical boundary controls carbonate: the <span class="term">Carbonate Compensation Depth (CCD)</span> — the depth below which carbonate dissolves faster than it can accumulate. No limestone forms below the CCD.</p>
+
+  <table class="data-table">
+    <thead>
+      <tr><th>Sediment Type</th><th>Composed Of</th><th>Where It Forms</th><th>Lithified Rock</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Carbonate ooze</strong></td>
+        <td>Foram and coccolith shells (CaCO₃)</td>
+        <td>Above CCD; surface productivity areas</td>
+        <td>Chalk / limestone</td>
+      </tr>
+      <tr>
+        <td><strong>Siliceous ooze</strong></td>
+        <td>Diatom + radiolarian silica skeletons</td>
+        <td>High-productivity upwelling zones; any depth</td>
+        <td>Chert (very hard)</td>
+      </tr>
+      <tr>
+        <td><strong>Red clay</strong></td>
+        <td>Eolian dust + iron-manganese oxides</td>
+        <td>Very low productivity; below CCD; far from land</td>
+        <td>Abyssal clay (~1 mm/1,000 yr)</td>
+      </tr>
+      <tr>
+        <td><strong>Ice-rafted debris</strong></td>
+        <td>Coarse land rocks dropped by melting icebergs</td>
+        <td>High-latitude polar regions only</td>
+        <td>Coarse clasts in deep-sea mud</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="callout callout-exam">
+    <div class="callout-title">Exam Tip</div>
+    <p>Ice-rafted debris (IRD) is the only way to get coarse sand and gravel into deep-sea fine mud. Finding IRD in ancient deep-sea rocks is direct evidence of past glaciation and iceberg transport — a key paleoclimate indicator.</p>
+  </div>
+</div>
+
+<!-- ══════════ UNIT 4 ══════════ -->
+<div class="module" id="u4">
+  <div class="module-label">Unit 4</div>
+  <h2>Sea-Level Dynamics and Stratigraphic Interpretation</h2>
+  <p>Every environment in Units 1–3 occupies a specific geographic position defined by its relationship to sea level. If sea level changes — even by a few meters — every environment shifts its position. This migration leaves a signature in the rock record readable even from rocks hundreds of millions of years old.</p>
+</div>
+
+<div class="module" id="modern-slr">
+  <div class="module-label">Concept 14</div>
+  <h2>Modern Sea-Level Rise — Evidence and Urgency</h2>
+
+  <h3>The Case Study — Rodanthe, North Carolina</h3>
+  <p>Rodanthe is a town on a barrier island on the Outer Banks of North Carolina. The lecture grounds geological sea-level concepts in observable reality using multiple independent lines of evidence:</p>
+
+  <div class="step-list">
+    <div class="step-item">
+      <div class="step-num">1</div>
+      <div class="step-content"><strong>Historical shoreline mapping:</strong> Shoreline positions from 1852, 1946, 1980, 2002, and 2020 overlaid on modern aerial photography show unmistakable landward migration of the shoreline at an accelerating rate. Where there was open beach in 1946, there is now ocean.</div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">2</div>
+      <div class="step-content"><strong>Photographic documentation:</strong> Homes once protected by sand dunes now stand directly in the surf zone. Houses on stilts sit in the breaking surf. Some structures have been physically relocated inland by heavy machinery because their original foundations are no longer on land.</div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">3</div>
+      <div class="step-content"><strong>Tide gauge records:</strong> Instrumental records along the U.S. East Coast all show a consistent upward trend since the mid-20th century, with the rate of rise accelerating — consistent across thousands of kilometers of coastline.</div>
+    </div>
+  </div>
+
+  <h3>Why Is Sea Level Rising?</h3>
+  <p>The ocean is rising because the air and ocean are warming. Two mechanisms operate:</p>
+
+  <div class="compare-grid">
+    <div class="compare-card">
+      <h4>Thermal Expansion</h4>
+      <ul>
+        <li>Water expands when heated</li>
+        <li>Warming the global ocean even slightly increases total ocean volume</li>
+        <li>Currently responsible for ~50% of observed sea-level rise</li>
+      </ul>
+    </div>
+    <div class="compare-card">
+      <h4>Ice Melt</h4>
+      <ul>
+        <li>Greenland ice sheet, mountain glaciers, Antarctica</li>
+        <li>Water previously locked in ice flows into the ocean</li>
+        <li>Accelerating as temperatures rise</li>
+        <li>Also: land subsidence on U.S. East Coast worsens relative sea-level rise</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="module" id="walther">
+  <div class="module-label">Concept 15</div>
+  <h2>Walther's Law — The Key Interpretive Principle</h2>
+
+  <div class="callout callout-concept">
+    <div class="callout-title">Walther's Law (1894)</div>
+    <p>A vertical succession of facies in a stratigraphic section reflects environments that were originally adjacent horizontally — provided no erosional break (unconformity) separates them.</p>
+  </div>
+
+  <p>In other words: if you drill down through a rock column and find (from top to bottom) beach sand, then tidal flat mud, then open shelf carbonate, then deep-sea turbidite — you are reading environments that were once side-by-side horizontally, but which migrated over each other through time as sea level changed.</p>
+
+  <p>This law is what makes the entire field of <span class="term">stratigraphy</span> possible: vertical sections in roadcuts or drill cores become maps of ancient geography.</p>
+
+  <div class="callout callout-exam">
+    <div class="callout-title">Critical Exception</div>
+    <p>Walther's Law only applies where no <strong>unconformity</strong> (erosional surface) separates the layers. An unconformity represents missing time — environments may have skipped over each other non-continuously, violating the law. Always check for unconformities before applying Walther's Law.</p>
+  </div>
+</div>
+
+<div class="module" id="transgression">
+  <div class="module-label">Concept 16</div>
+  <h2>Transgression and Regression — Reading Sea-Level Change in Rocks</h2>
+
+  <!-- Transgression/Regression diagram -->
+  <div class="diagram-wrap">
+    <svg viewBox="0 0 720 280" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+      <!-- ── LEFT SIDE: TRANSGRESSION ── -->
+      <text x="170" y="18" text-anchor="middle" font-family="Lora, serif" font-size="14" font-weight="600" fill="#1a3d6b">TRANSGRESSION (Sea Level Rise)</text>
+      <!-- stratigraphy column (reads bottom to top = oldest to youngest) -->
+      <rect x="60" y="195" width="70" height="60" fill="#c8a07a" stroke="#a07040"/>
+      <text x="95" y="230" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="10" fill="#7a4a20" font-weight="600">Nonmarine</text>
+      <text x="95" y="243" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="10" fill="#7a4a20">(river/floodplain)</text>
+
+      <rect x="60" y="145" width="70" height="50" fill="#d4b460" stroke="#a08030"/>
+      <text x="95" y="174" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="10" fill="#7a6020" font-weight="600">Beach/Coastal</text>
+
+      <rect x="60" y="90" width="70" height="55" fill="#8ab0d0" stroke="#5a8090"/>
+      <text x="95" y="121" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="10" fill="#1a3d6b" font-weight="600">Shallow Shelf</text>
+      <text x="95" y="133" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="10" fill="#1a3d6b">(marine)</text>
+
+      <rect x="60" y="30" width="70" height="60" fill="#4a6880" stroke="#2a4858"/>
+      <text x="95" y="64" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="10" fill="white" font-weight="600">Deep Shelf</text>
+      <text x="95" y="76" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="10" fill="white">(turbidites)</text>
+
+      <!-- vertical arrows -->
+      <line x1="135" y1="255" x2="135" y2="35" stroke="#1a3d6b" stroke-width="1.5" marker-end="url(#arr)"/>
+      <text x="148" y="150" font-family="Source Sans 3, sans-serif" font-size="11" fill="#1a3d6b">Marine →</text>
+      <text x="148" y="162" font-family="Source Sans 3, sans-serif" font-size="11" fill="#1a3d6b">over nonmarine</text>
+
+      <text x="30" y="258" font-family="Source Sans 3, sans-serif" font-size="10" fill="#555">OLDEST</text>
+      <text x="35" y="32" font-family="Source Sans 3, sans-serif" font-size="10" fill="#555">YOUNGEST</text>
+
+      <!-- ── DIVIDER ── -->
+      <line x1="360" y1="20" x2="360" y2="270" stroke="#e0dcd4" stroke-width="1.5" stroke-dasharray="6,4"/>
+
+      <!-- ── RIGHT SIDE: REGRESSION ── -->
+      <text x="545" y="18" text-anchor="middle" font-family="Lora, serif" font-size="14" font-weight="600" fill="#8b4513">REGRESSION (Sea Level Fall)</text>
+
+      <rect x="435" y="195" width="70" height="60" fill="#4a6880" stroke="#2a4858"/>
+      <text x="470" y="230" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="10" fill="white" font-weight="600">Deep Shelf</text>
+      <text x="470" y="243" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="10" fill="white">(marine)</text>
+
+      <rect x="435" y="145" width="70" height="50" fill="#8ab0d0" stroke="#5a8090"/>
+      <text x="470" y="174" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="10" fill="#1a3d6b" font-weight="600">Shallow Shelf</text>
+
+      <rect x="435" y="90" width="70" height="55" fill="#d4b460" stroke="#a08030"/>
+      <text x="470" y="121" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="10" fill="#7a6020" font-weight="600">Beach/Coastal</text>
+
+      <rect x="435" y="30" width="70" height="60" fill="#c8a07a" stroke="#a07040"/>
+      <text x="470" y="64" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="10" fill="#7a4a20" font-weight="600">Nonmarine</text>
+      <text x="470" y="76" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="10" fill="#7a4a20">(river/floodplain)</text>
+
+      <line x1="510" y1="255" x2="510" y2="35" stroke="#d85a30" stroke-width="1.5" marker-end="url(#arr)"/>
+      <text x="523" y="150" font-family="Source Sans 3, sans-serif" font-size="11" fill="#d85a30">Nonmarine →</text>
+      <text x="523" y="162" font-family="Source Sans 3, sans-serif" font-size="11" fill="#d85a30">over marine</text>
+
+      <text x="405" y="258" font-family="Source Sans 3, sans-serif" font-size="10" fill="#555">OLDEST</text>
+      <text x="410" y="32" font-family="Source Sans 3, sans-serif" font-size="10" fill="#555">YOUNGEST</text>
+    </svg>
+    <figcaption>Transgression (left) = sea advances landward → marine strata overlie nonmarine. Regression (right) = sea retreats → nonmarine strata overlie marine. Both patterns are read from bottom (oldest) to top (youngest).</figcaption>
+  </div>
+
+  <table class="data-table">
+    <thead>
+      <tr><th>Event</th><th>Cause</th><th>Shoreline Movement</th><th>Rock Record</th><th>Term</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Transgression</strong></td>
+        <td>Sea level rise OR land subsidence</td>
+        <td>Landward (coast moves inland)</td>
+        <td>Marine strata over nonmarine</td>
+        <td><span class="term">Retrogradation</span></td>
+      </tr>
+      <tr>
+        <td><strong>Regression</strong></td>
+        <td>Sea level fall OR excess sediment supply</td>
+        <td>Seaward (coast builds outward)</td>
+        <td>Nonmarine strata over marine</td>
+        <td><span class="term">Progradation</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="callout callout-diagram">
+    <div class="callout-title">Eustasy vs. Relative Sea Level</div>
+    <p><span class="term">Eustatic sea level</span> is the globally uniform ocean surface elevation. <span class="term">Relative sea level</span> is sea surface elevation relative to local land — controlled by both eustasy and local tectonics. A coast can experience sea-level rise even with stable global ocean level if the land is subsiding (sinking), and vice versa. The U.S. East Coast experiences faster-than-global sea-level rise partly due to land subsidence.</p>
+  </div>
+</div>
+
+<div class="module" id="future-slr">
+  <div class="module-label">Concept 17</div>
+  <h2>Future Sea-Level Projections</h2>
+
+  <p>The IPCC uses <span class="term">SSP (Shared Socioeconomic Pathway) scenarios</span> to model future sea-level rise under different emissions trajectories:</p>
+
+  <div class="phase-chain">
+    <div class="phase-node active">
+      <div class="pn-label">SSP1-1.9</div>
+      <div class="pn-sub">Most optimistic</div>
+      <div class="pn-val">~0.3–0.6 m</div>
+      <div class="pn-sub">by 2100</div>
+    </div>
+    <div class="phase-node">
+      <div class="pn-label">SSP2-4.5</div>
+      <div class="pn-sub">Moderate</div>
+      <div class="pn-val">~0.4–0.9 m</div>
+      <div class="pn-sub">by 2100</div>
+    </div>
+    <div class="phase-node">
+      <div class="pn-label">SSP3-7.0</div>
+      <div class="pn-sub">High</div>
+      <div class="pn-val">~0.5–1.0 m</div>
+      <div class="pn-sub">by 2100</div>
+    </div>
+    <div class="phase-node" style="background:var(--highlight-light);">
+      <div class="pn-label">SSP5-8.5</div>
+      <div class="pn-sub">Most severe</div>
+      <div class="pn-val" style="color:#993c1d">~0.6–1.0 m+</div>
+      <div class="pn-sub" style="color:#993c1d">ice uncertainties</div>
+    </div>
+  </div>
+
+  <div class="callout callout-warning">
+    <div class="callout-title">The Ice Uncertainty Problem</div>
+    <p>The largest uncertainty in sea-level projections is the stability of the Antarctic and Greenland ice sheets. If major ice sheet instability occurs — marine ice sheet instability, ice cliff collapse — sea-level rise could significantly exceed central projections, potentially exceeding 2 meters by 2100 under worst-case scenarios. This tail risk is what concerns coastal planners most.</p>
+  </div>
+
+  <p>The geological record provides crucial context: during past warm periods (e.g., the Last Interglacial, ~125,000 years ago), global temperatures were ~1–2°C warmer than pre-industrial and sea levels were 6–9 meters higher than today. This tells geologists that the ice committed to melt at current CO₂ levels is much larger than what has melted so far — the Earth is still catching up to the forcing.</p>
+</div>
+
+<!-- ══════════ GLOSSARY ══════════ -->
+<div class="module" id="glossary">
+  <div class="module-label">Master Reference</div>
+  <h2>Complete Glossary of Key Terms</h2>
+  <p>All bolded terms from Lectures 7–10. Terms are defined as they were introduced — grounded in their observational basis.</p>
+
+  <div class="term-grid">
+    <div class="term-card"><strong>Accommodation space</strong>Space available for sediment to accumulate; created by subsidence or sea-level rise.</div>
+    <div class="term-card"><strong>Bed load</strong>Coarse sediment rolling, sliding, or saltating along the riverbed; responds immediately to velocity changes.</div>
+    <div class="term-card"><strong>Bioclasts</strong>Fragments of carbonate shells or skeletons within a sedimentary rock.</div>
+    <div class="term-card"><strong>Bouma sequence</strong>Idealized internal structure of a turbidite: massive graded sand (Ta) → planar lamination (Tb) → ripples (Tc) → laminated silt (Td) → mud cap (Te).</div>
+    <div class="term-card"><strong>Caliche</strong>White CaCO₃ nodules in soil; definitive sign of subaerial exposure and terrestrial conditions.</div>
+    <div class="term-card"><strong>Carbonate Compensation Depth (CCD)</strong>Depth below which carbonate dissolves faster than it accumulates; no limestone forms below this depth.</div>
+    <div class="term-card"><strong>Chalk</strong>Soft, white limestone formed from compacted carbonate ooze (foram/coccolith shells).</div>
+    <div class="term-card"><strong>Chert</strong>Hard, dense siliceous rock formed from lithified siliceous ooze; records deep-ocean or upwelling conditions.</div>
+    <div class="term-card"><strong>Clast imbrication</strong>Upstream-tilting of flat pebbles; a paleocurrent indicator.</div>
+    <div class="term-card"><strong>Clastic sediment</strong>Sediment composed of fragments derived from pre-existing rocks.</div>
+    <div class="term-card"><strong>Coal</strong>Carbonaceous rock formed by burial, compaction, and heating of swamp peat.</div>
+    <div class="term-card"><strong>Combined flow</strong>Simultaneous oscillatory + unidirectional water motion during storms; generates HCS.</div>
+    <div class="term-card"><strong>Cross-stratification</strong>Inclined internal layers in a sediment body recording bedform migration in a directional flow.</div>
+    <div class="term-card"><strong>Debris flow</strong>High-density slurry of water, rock, and mud moving as a cohesive mass under gravity; deposits unsorted sediment.</div>
+    <div class="term-card"><strong>Desiccation cracks</strong>Polygonal shrinkage cracks in drying mud; indicator of subaerial exposure.</div>
+    <div class="term-card"><strong>Diatoms</strong>Photosynthetic single-celled algae with silica skeletons; produce siliceous ooze.</div>
+    <div class="term-card"><strong>Eolian</strong>Wind-driven; eolian deposits include dune sandstones and loess.</div>
+    <div class="term-card"><strong>Eustatic sea level</strong>The globally uniform ocean surface elevation.</div>
+    <div class="term-card"><strong>Evaporite</strong>Mineral deposit (halite, gypsum) formed by evaporation of saline water in an enclosed basin.</div>
+    <div class="term-card"><strong>Facies</strong>A body of rock with distinctive physical, chemical, and biological characteristics reflecting a specific depositional environment.</div>
+    <div class="term-card"><strong>Fair-weather wave base</strong>Depth (~5–15 m) below which everyday waves cannot stir sediment; quiet-water settling below this.</div>
+    <div class="term-card"><strong>Fining-upward sequence</strong>Vertical decrease in grain size within a depositional cycle; characteristic of meandering river deposits.</div>
+    <div class="term-card"><strong>Flocculation</strong>Clumping of clay particles by salt ions in seawater, causing enhanced settling.</div>
+    <div class="term-card"><strong>Floodplain</strong>Flat, fine-grained area adjacent to a river channel built by overbank flood deposits.</div>
+    <div class="term-card"><strong>Foraminifera</strong>Single-celled marine organisms with CaCO₃ shells; major contributors to carbonate ooze.</div>
+    <div class="term-card"><strong>Framestone</strong>A carbonate rock with in-place biological framework (e.g., coral heads in growth position).</div>
+    <div class="term-card"><strong>Frosted grain surface</strong>Microscopic abrasion texture on eolian sand grains; diagnostic of wind transport.</div>
+    <div class="term-card"><strong>Herringbone cross-stratification</strong>Cross-beds alternately dipping in opposite directions; records alternating tidal current directions.</div>
+    <div class="term-card"><strong>HCS (Hummocky cross-stratification)</strong>Undulating internal layering produced by storm combined flow; diagnostic of below-storm-wave-base conditions.</div>
+    <div class="term-card"><strong>Ice-rafted debris (IRD)</strong>Coarse terrestrial fragments deposited in deep-sea mud by melting icebergs; records past glaciation.</div>
+    <div class="term-card"><strong>Longshore current / drift</strong>Current and sediment transport parallel to a beach, generated by oblique wave approach.</div>
+    <div class="term-card"><strong>Loess</strong>Wind-deposited silt carried beyond the dune field; forms blanket-like deposit beyond desert.</div>
+    <div class="term-card"><strong>Meandering river</strong>Single-channel, high-sinuosity river migrating laterally across its floodplain.</div>
+    <div class="term-card"><strong>Micrite</strong>Very fine-grained carbonate mud (&lt;4 μm grain size); forms in low-energy shallow carbonate settings.</div>
+    <div class="term-card"><strong>Natural levee</strong>Low embankment of sand/silt along a river bank, built by successive flood deposits.</div>
+    <div class="term-card"><strong>Normal grading</strong>Upward decrease in grain size within a single layer; records decreasing flow energy.</div>
+    <div class="term-card"><strong>Ocean acidification</strong>Decrease in ocean pH from CO₂ absorption, threatening carbonate-secreting organisms.</div>
+    <div class="term-card"><strong>Ooids</strong>Small, concentrically-layered CaCO₃ grains precipitated in agitated, supersaturated shallow water.</div>
+    <div class="term-card"><strong>Paleocurrent indicator</strong>A sedimentary feature (cross-bed, imbrication, ripple asymmetry) recording direction of ancient flow.</div>
+    <div class="term-card"><strong>Peat</strong>First stage of coal formation (~50% carbon); unconsolidated, waterlogged organic material in swamps.</div>
+    <div class="term-card"><strong>Photic zone</strong>Sunlit upper ocean (0–200 m) within which photosynthesis occurs; carbonate organisms restricted here.</div>
+    <div class="term-card"><strong>Playa lake</strong>Temporary, highly evaporative saline lake in an undrained arid basin.</div>
+    <div class="term-card"><strong>Point bar</strong>Crescentic sand body deposited on the inner bank of a river meander.</div>
+    <div class="term-card"><strong>Progradation</strong>Seaward building of coastal environments; associated with regression.</div>
+    <div class="term-card"><strong>Radiolaria</strong>Single-celled marine protists with siliceous skeletons; contribute to deep-sea siliceous ooze.</div>
+    <div class="term-card"><strong>Red clay (abyssal clay)</strong>Slowest-accumulating deep-sea sediment; eolian dust + iron oxides in low-productivity ocean regions.</div>
+    <div class="term-card"><strong>Regression</strong>Seaward shoreline migration due to sea-level fall or excess sediment; nonmarine strata over marine.</div>
+    <div class="term-card"><strong>Relative sea level</strong>Sea surface elevation relative to local land; controlled by both eustasy and local tectonics.</div>
+    <div class="term-card"><strong>Saltation</strong>Bouncing transport of sand grains along a surface in short arcs; occurs in both river bed load and eolian transport.</div>
+    <div class="term-card"><strong>Siliceous ooze</strong>Soft deep-sea sediment of diatom/radiolarian silica skeletons; lithifies to chert.</div>
+    <div class="term-card"><strong>Skolithos</strong>Vertical, cylindrical trace fossil made by suspension-feeding worms; indicative of beach or shoreface.</div>
+    <div class="term-card"><strong>Storm wave base</strong>Depth (~15–50 m) to which major storm waves stir the seafloor.</div>
+    <div class="term-card"><strong>Stromatolite</strong>Layered, mounded structure built by cyanobacterial mats; found in shallow carbonate environments.</div>
+    <div class="term-card"><strong>Stratigraphy</strong>The study of layered rock sequences, their compositions, ages, and geological histories.</div>
+    <div class="term-card"><strong>Subsidence</strong>Downward tectonic movement of the crust; creates accommodation space for sediment.</div>
+    <div class="term-card"><strong>Suspended load</strong>Fine sediment (silt/clay) maintained in the water column by turbulence; travels far from source.</div>
+    <div class="term-card"><strong>Tempestite</strong>Storm-deposited sand layer within deep-shelf mudrock; sharp erosional base, HCS, normal grading, mud cap.</div>
+    <div class="term-card"><strong>Thermal expansion</strong>Volume increase of water with temperature; a major driver of modern sea-level rise.</div>
+    <div class="term-card"><strong>Transgression</strong>Landward shoreline migration due to sea-level rise; marine strata over nonmarine strata.</div>
+    <div class="term-card"><strong>Turbidite</strong>A graded bed deposited by a turbidity current; displays the Bouma sequence (Ta–Te).</div>
+    <div class="term-card"><strong>Turbidity current</strong>A submarine density current of sediment-laden water flowing rapidly down a continental slope.</div>
+    <div class="term-card"><strong>Varves</strong>Annual light + dark sediment layer couplets in quiet lake environments; each pair = one year.</div>
+    <div class="term-card"><strong>Walther's Law</strong>A vertical succession of facies reflects environments that were originally adjacent horizontally (if no unconformity).</div>
+    <div class="term-card"><strong>Weathering</strong>Physical and chemical breakdown of rock at the Earth's surface; the source of all clastic sediment.</div>
+    <div class="term-card"><strong>Zooxanthellae</strong>Photosynthetic algae living symbiotically inside coral tissue; their CO₂ consumption drives coral calcification.</div>
+  </div>
+</div>
+
+<hr class="section-divider" style="margin-top:3rem;">
+<p style="font-size:13px;color:var(--text-light);text-align:center;padding-bottom:2rem;">
+  Notes reconstructed from Lectures 7–10: Nonmarine Environments · Clastic Marine Environments · Carbonate &amp; Deep Marine · Sea-Level Dynamics.<br>
+  Every concept is paired with its observational evidence — remember: geology is about <em>how we know</em>, not just <em>what we know</em>.
+</p>
+
+</main>
+</div>
+</body>
+</html>

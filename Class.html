@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Javascript array sorts</h2>
+    <p>Click the buttons below to see the arrays sorted:</p>
+    <button onclick="ascending()">Ascending</button>
+    <button onclick="descending()">Descending</button>
+    <p id="result"></p>
+    <script>
+      var points = [40, 100, 1, 5, 25, 10];
+      document.getElementById("result").innerHTML = points;
+        function ascending() {
+            points.sort(function(a, b){return a - b});
+            document.getElementById("result").innerHTML = points;
+        }
+        function descending() {
+            points.sort(function(a, b){return b - a});
+            document.getElementById("result").innerHTML = points;
+        }
+    </script>
+    <p>Multiply every element in the array with 10:</p>
+
+<p id="product_value"></p>
+
+<script>
+
+var numbers = [28, 6, 19, 95];
+
+function myFunction(num) {
+
+return num * 10;
+
+}
+
+var newarray = numbers.map(myFunction);
+
+document.getElementById("product_value").innerHTML = newarray;
+
+</script>
+</body>
+</html>

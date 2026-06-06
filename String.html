@@ -4,12 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>String in JavaScript</title>
+    <style>
+        body {
+            background-color: lightblue;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 20px;
+        }
+    </style>
 </head>
 <body>
     <h1>String in JavaScript</h1>
     <p>String Methods</p>
     <p id="numberResult"></p>
     <p id="stringResult"></p>
+    <h2>Error Handling with Try-Catch</h2>
+    <p>This is a simple error handling example. Where how to use <b>try-catch</b> in error handling.</p>
     <script>
         var x = 50;
         var y = 100;
@@ -17,7 +26,13 @@
         document.getElementById("numberResult").innerHTML = x+y;
          document.getElementById("stringResult").innerHTML = "string (" + x + ") " + "string (" + y + ") = " + x+y;
 
-
+     try {
+        // This will cause an error because 'z' is not defined
+        addalert = "Welcome my guest!";
+        alert(addalert);
+    } catch (error) {
+        console.error("An error occurred:", error.message);
+    }
     </script>
 </body>
 </html>

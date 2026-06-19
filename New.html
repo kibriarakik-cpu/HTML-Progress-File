@@ -29,6 +29,7 @@ rel="stylesheet" />
  <style>
 
         body{
+            background-color: aquamarine;
             font-family: Arial;
             scroll-behavior: smooth;
         }
@@ -85,6 +86,30 @@ rel="stylesheet" />
         font-weight: 500;
         margin-right: 15px;
      }
+     /*Alighting Main Container*/
+     .main-container{
+       height: 100vh;
+       display: flex;
+         justify-content: center;
+            align-items: center;
+            background: linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),
+            url('https://images.unsplash.com/photo-1498050108023-c5249f4df085');
+            background-attachment: fixed;
+            background-size: cover;
+     }
+    /*Alighting Items in Main Container*/
+    .main-row{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }   
+    .main-row img{
+        width: 100%;
+        max-width: 400px;
+        border-radius: 10px;
+    }   
+   
     </style>
 </head>
 <body>
@@ -129,5 +154,12 @@ rel="stylesheet" />
     </div>
 
 </section>
+ /*Main Container*/
+   <div class="main-container container">
+    <h2 class="text-center my-4">Welcome to My Website</h2>
+    <h1 class="text-center my-4">Explore the World of Web Development</h1>
+    <h2 class="text-center my-4">Learn, Create, and Innovate</h2>
+   </div>
+   
 </body>
 </html>

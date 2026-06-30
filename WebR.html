@@ -203,6 +203,152 @@ display:none;
 }
 
 }
+/*=========================
+    SOCIAL SECTION
+=========================*/
+
+.social-section{
+
+    background:linear-gradient(135deg,#111,#181818);
+
+}
+
+.social-card{
+
+    height:200px;
+
+    border-radius:25px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+
+    color:#fff;
+
+    background:rgba(255,255,255,.08);
+
+    backdrop-filter:blur(18px);
+
+    border:1px solid rgba(255,255,255,.15);
+
+    transition:.45s;
+
+    overflow:hidden;
+
+    position:relative;
+
+}
+
+.social-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:linear-gradient(135deg,transparent,rgba(255,255,255,.15));
+
+    opacity:0;
+
+    transition:.4s;
+
+}
+
+.social-card:hover::before{
+
+    opacity:1;
+
+}
+
+.social-card:hover{
+
+    transform:translateY(-12px) scale(1.05);
+
+    box-shadow:0 20px 45px rgba(0,0,0,.4);
+
+}
+
+.social-card i{
+
+    font-size:55px;
+
+    margin-bottom:18px;
+
+}
+
+.social-card h5{
+
+    font-weight:600;
+
+}
+
+.social-card small{
+
+    opacity:.75;
+
+}
+
+/* Brand Colors */
+
+.facebook:hover{
+
+    background:#1877F2;
+
+}
+
+.instagram:hover{
+
+    background:linear-gradient(
+        45deg,
+        #F58529,
+        #DD2A7B,
+        #8134AF,
+        #515BD4);
+
+}
+
+.youtube:hover{
+
+    background:#FF0000;
+
+}
+
+.twitter:hover{
+
+    background:#000;
+
+}
+
+.whatsapp:hover{
+
+    background:#25D366;
+
+}
+
+.tiktok:hover{
+
+    background:#111;
+}
+
+.social-card:hover i{
+
+    animation:bounce .6s;
+}
+
+@keyframes bounce{
+
+0%{transform:scale(.8);}
+50%{transform:scale(1.25);}
+100%{transform:scale(1);}
+}
+
 
 </style>
 
@@ -410,6 +556,129 @@ Highly recommended for family dinners and special occasions.
 <p>Phone: +1 123-456-7890</p>
 
 <p>123 Food Street, New York</p>
+<!--=========================
+        SOCIAL MEDIA
+==========================-->
+
+<section class="social-section py-5">
+
+    <div class="container">
+
+        <div class="text-center mb-5">
+
+            <h2 class="fw-bold display-5">
+                Follow Us
+            </h2>
+
+            <p class="text-light opacity-75">
+                Stay connected for delicious updates, offers and behind-the-scenes moments.
+            </p>
+
+        </div>
+
+        <div class="row g-4 justify-content-center">
+
+            <!-- Facebook -->
+            <div class="col-lg-2 col-md-4 col-6">
+
+                <a href="#"
+                   class="social-card facebook text-decoration-none">
+
+                    <i class="fab fa-facebook-f"></i>
+
+                    <h5>Facebook</h5>
+
+                    <small>@FlavorHaven</small>
+
+                </a>
+
+            </div>
+
+            <!-- Instagram -->
+            <div class="col-lg-2 col-md-4 col-6">
+
+                <a href="#"
+                   class="social-card instagram text-decoration-none">
+
+                    <i class="fab fa-instagram"></i>
+
+                    <h5>Instagram</h5>
+
+                    <small>@FlavorHaven</small>
+
+                </a>
+
+            </div>
+
+            <!-- TikTok -->
+            <div class="col-lg-2 col-md-4 col-6">
+
+                <a href="#"
+                   class="social-card tiktok text-decoration-none">
+
+                    <i class="fab fa-tiktok"></i>
+
+                    <h5>TikTok</h5>
+
+                    <small>@FlavorHaven</small>
+
+                </a>
+
+            </div>
+
+            <!-- YouTube -->
+            <div class="col-lg-2 col-md-4 col-6">
+
+                <a href="#"
+                   class="social-card youtube text-decoration-none">
+
+                    <i class="fab fa-youtube"></i>
+
+                    <h5>YouTube</h5>
+
+                    <small>Flavor Haven</small>
+
+                </a>
+
+            </div>
+
+            <!-- X -->
+            <div class="col-lg-2 col-md-4 col-6">
+
+                <a href="#"
+                   class="social-card twitter text-decoration-none">
+
+                    <i class="fa-brands fa-x-twitter"></i>
+
+                    <h5>X</h5>
+
+                    <small>@FlavorHaven</small>
+
+                </a>
+
+            </div>
+
+            <!-- WhatsApp -->
+            <div class="col-lg-2 col-md-4 col-6">
+
+                <a href="#"
+                   class="social-card whatsapp text-decoration-none">
+
+                    <i class="fab fa-whatsapp"></i>
+
+                    <h5>WhatsApp</h5>
+
+                    <small>Order Now</small>
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
  <h2>Register To Enjoy The Taste</h2>
 
 <form id="registerForm">
@@ -568,6 +837,29 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
+// Pop animation on click
+
+document.querySelectorAll(".social-card").forEach(card=>{
+
+card.addEventListener("click",()=>{
+
+card.animate([
+
+{transform:"scale(1)"},
+
+{transform:"scale(.92)"},
+
+{transform:"scale(1)"}
+
+],{
+
+duration:250
+
+});
+
+});
+
+});
 </script>
 
 </body>

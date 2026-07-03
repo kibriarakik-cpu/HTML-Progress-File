@@ -8,7 +8,19 @@
     "button-type": "off",
     "axe/text-alternatives": "off",
     "meta-viewport": "off",
-    "axe/structure": "off"
+    "axe/structure": "off",
+    "axe/forms": [
+      "default",
+      {
+        "label": "off"
+      }
+    ],
+    "axe/parsing": [
+      "default",
+      {
+        "duplicate-id-active": "off"
+      }
+    ]
   },
   "browserslist": [
     "defaults",

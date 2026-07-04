@@ -506,6 +506,15 @@ HTML, CSS & JavaScript.
 // ===============================
 
 const display = document.getElementById("display");
+function getHistory() {
+    return document.getElementById("display").value;
+}
+function setHistory(value) {
+    document.getElementById("display").value = value;
+}
+function printHistory() {
+    return document.getElementById("display").value;
+}
 
 // Add value to display
 function appendValue(value) {
@@ -699,8 +708,8 @@ Features
 
 <p>
 
-© 2026 Neo Calculator |
-Made with ❤️ using HTML CSS JavaScript
+&copy; 2026 Neo Calculator |
+
 
 </p>
 

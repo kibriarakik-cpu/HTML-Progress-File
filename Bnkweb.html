@@ -107,12 +107,109 @@ transform:scale(1.05);
 .about{
 background:#f8f9fa;
 }
+/* ==========================
+   CALCULATOR SECTION
+========================== */
 
-footer{
-background:#00152d;
-color:white;
-padding:20px;
+.calculator-container{
+
+    display:flex;
+    width:100%;
+    gap:50px;
+
+    flex-wrap:wrap;
+
+    justify-content:center;
 }
+
+/* Calculator */
+
+.calculator{
+    max-width: fit-content;
+    width:fit-content;
+
+    padding:45px;
+
+    border-radius:25px;
+
+    backdrop-filter:blur(25px);
+
+    background:rgba(255,255,255,.08);
+
+    border:1px solid rgba(255,255,255,.15);
+
+    box-shadow:0 20px 40px rgba(0,0,0,.5);
+}
+
+#display{
+
+    width:220px;
+
+    height:80px;
+
+    border:none;
+
+    outline:none;
+
+    border-radius:15px;
+
+    margin-bottom:25px;
+
+    font-size:32px;
+
+    text-align:right;
+
+    padding-right:20px;
+
+    background:#111827;
+
+    color:white;
+}
+
+.buttons{
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:15px;
+}
+
+.buttons button{
+
+    height:65px;
+
+    border:none;
+
+    border-radius:15px;
+
+    background:#1e293b;
+
+    color:white;
+
+    font-size:22px;
+
+    cursor:pointer;
+
+    transition:.25s;
+}
+
+.buttons button:hover{
+
+    background:#38bdf8;
+
+    transform:scale(1.05);
+}
+
+.buttons button:last-child{
+
+    background:#22c55e;
+}
+ footer{
+ background:#00152d;
+ color:white;
+ padding:20px;
+ }
 
 </style>
 
@@ -384,6 +481,43 @@ Our goal is to provide modern banking with complete transparency and security.
 </div>
 
 </section>
+<div class="calculator">
+
+    <input
+        type="text"
+        id="display"
+        placeholder="0"
+        readonly
+    >
+
+    <div class="buttons">
+
+        <button onclick="clearDisplay()">AC</button>
+        <button onclick="deleteLast()">DEL</button>
+        <button onclick="appendValue('%')">%</button>
+        <button onclick="appendValue('/')">/</button>
+
+        <button onclick="appendValue('7')">7</button>
+        <button onclick="appendValue('8')">8</button>
+        <button onclick="appendValue('9')">9</button>
+        <button onclick="appendValue('*')">*</button>
+
+        <button onclick="appendValue('4')">4</button>
+        <button onclick="appendValue('5')">5</button>
+        <button onclick="appendValue('6')">6</button>
+        <button onclick="appendValue('-')">-</button>
+
+        <button onclick="appendValue('1')">1</button>
+        <button onclick="appendValue('2')">2</button>
+        <button onclick="appendValue('3')">3</button>
+        <button onclick="appendValue('+')">+</button>
+
+        <button onclick="appendValue('0')">0</button>
+        <button onclick="appendValue('.')">.</button>
+        <button onclick="appendValue('()')">( )</button>
+        <button onclick="calculate()">=</button>
+
+    </div>
 
 <footer class="text-center">
 
@@ -425,6 +559,129 @@ counter("branches",120);
 
 counter("countries",40);
 
+    // ===============================
+// NEO CALCULATOR
+// ===============================
+
+const display = document.getElementById("display");
+function getHistory() {
+    return document.getElementById("display").value;
+}
+function setHistory(value) {
+    document.getElementById("display").value = value;
+}
+function printHistory() {
+    return document.getElementById("display").value;
+}
+
+// Add value to display
+function appendValue(value) {
+
+    if (value === "()") {
+
+        let text = display.value;
+
+        let open = (text.match(/\(/g) || []).length;
+        let close = (text.match(/\)/g) || []).length;
+
+        if (open === close) {
+            display.value += "(";
+        } else {
+            display.value += ")";
+        }
+
+        return;
+    }
+
+    display.value += value;
+}
+
+// Clear display
+function clearDisplay() {
+    display.value = "";
+}
+
+// Delete last character
+function deleteLast() {
+    display.value = display.value.slice(0, -1);
+}
+
+// Calculate answer
+function calculate() {
+
+    if (display.value === "") return;
+
+    try {
+
+        let expression = display.value.replace(/%/g, "/100");
+
+        let result = eval(expression);
+
+        if (result === Infinity || result === -Infinity) {
+            display.value = "Cannot divide by zero";
+            return;
+        }
+
+        if (Number.isInteger(result)) {
+            display.value = result;
+        } else {
+            display.value = Number(result.toFixed(8));
+        }
+
+    } catch {
+
+        display.value = "Error";
+    }
+}
+
+// ===============================
+// Keyboard Support
+// ===============================
+
+document.addEventListener("keydown", function(event){
+
+    const key = event.key;
+
+    if("0123456789+-*/().%".includes(key)){
+        appendValue(key);
+    }
+
+    if(key === "Enter"){
+        event.preventDefault();
+        calculate();
+    }
+
+    if(key === "Backspace"){
+        deleteLast();
+    }
+
+    if(key === "Delete"){
+        clearDisplay();
+    }
+
+});
+
+// ===============================
+// Button Animation
+// ===============================
+
+const buttons = document.querySelectorAll(".buttons button");
+
+buttons.forEach(button => {
+
+    button.addEventListener("click", function(){
+
+        this.style.transform = "scale(.90)";
+
+        setTimeout(()=>{
+
+            this.style.transform = "";
+
+        },100);
+
+    });
+
+});
 </script>
 
 </body>

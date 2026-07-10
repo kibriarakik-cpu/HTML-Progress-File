@@ -7,3 +7,13 @@ print("Hello, \nWorld!")
 print("All keywords of python are below:")
 help("keywords")
 help("modules")
+help("symbols")
+letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+for i in range(len(letters)):
+    print(letters[i])
+Sauce = input("Enter your favorite sauce: ")
+print("Your favorite sauce is " + Sauce + ".")
+Sports = input("Enter your favorite sport: ")
+print("Your favorite sport is " + Sports + ".")
+Jobs = input("Enter your dream job: ")
+print("Your dream job is " + Jobs + ".")

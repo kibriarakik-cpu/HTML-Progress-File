@@ -17,3 +17,25 @@ Sports = input("Enter your favorite sport: ")
 print("Your favorite sport is " + Sports + ".")
 Jobs = input("Enter your dream job: ")
 print("Your dream job is " + Jobs + ".")
+snack_name   = "Chips"    # str   — text
+price        = 1.50       # float — decimal
+quantity     = 10         # int   — whole number
+is_available = True       # bool  — True or False
+
+print(type(snack_name))   # <class 'str'>
+print(type(price))        # <class 'float'>
+
+price    = 1.50
+quantity = 10
+total = price * quantity
+print("Total value: $", total)
+print("Sale price: $", price - 0.25)
+print("Double stock:", quantity * 2)
+total = price * quantity
+print("Total value: $", total)
+print("Sale price: $", price - 0.25)
+print("Double stock:", quantity * 2)
+
+print("Is price under 2$?", price < 2 )
+print("Is quantity greater than 5?", quantity > 5 )
+print("Is price equal to 1.50?", price == 1.50 )

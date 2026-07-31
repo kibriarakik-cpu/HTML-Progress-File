@@ -1,7 +1,3 @@
-import numbers
-from select import poll
-
-
 classmates=["Alex","Jordan","Taylor","Morgan","Casey"]
 print("Classmates List:", classmates)
 print("Total students in the class:", len(classmates))

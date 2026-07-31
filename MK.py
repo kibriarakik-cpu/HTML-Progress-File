@@ -1,3 +1,7 @@
+import numbers
+from select import poll
+
+
 classmates=["Alex","Jordan","Taylor","Morgan","Casey"]
 print("Classmates List:", classmates)
 print("Total students in the class:", len(classmates))
@@ -17,3 +21,18 @@ classmates.sort()
 print("Sorted classmates list:", classmates)
 classmates.reverse()
 print("Reversed classmates list:", classmates)
+Teacher=["name: Mr. Smith", "subject: Math", "years_of_experience: 10"]
+print("\nTeacher Information:", Teacher)
+print("Subject taught by the teacher:", Teacher[1].split(": ")[1])
+print("Teacher's years of experience:", Teacher[2].split(": ")[1])
+Teacher["email"] = "Smith@gmail.com"
+print("Teacher's email:", Teacher["email"])
+Teacher.pop("years_of_experience", None)
+print("updated Teacher Information:", Teacher)
+roll_numbers = [101, 102, 103, 104, 105]
+students_info = list(zip(classmates, roll_numbers))
+print("\nStudents Information (Name and Roll Number):", students_info)
+print("\nStudents Directory:")
+for name, roll_number in students_info:
+    print(f"Name: {name}, Roll Number: {roll_number}")
+print("Student at index 2:", students_info[2])

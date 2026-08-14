@@ -1,4 +1,4 @@
-class Dog(Animal):
+class Dog(Animal): # type: ignore
 
     def __init__(self, name, habitat, breed):
         super().__init__(name, habitat)  # Calls Animal's constructor
